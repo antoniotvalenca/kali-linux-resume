@@ -1,0 +1,69 @@
+SHELL SCRIPT
+-> linguagem de programação para ser usada em linha de comando (terminal, bash ...)
+-> conjunto de comandos guardados num arquivo que serão invocados e executados
+-> # para comentarios
+-> .sh a extensão
+________________________________________________________________________________________________________________________________________________
+
+VARIAVEIS *****
+
+variavel=antonio // sem espaços
+echo $variavel // vai printar o valor da variavel
+
+read variavel2 // para receber input
+
+________________________________________________________________________________________________________________________________________________
+
+CONDICIONAIS *****
+
+-> if statement
+
+echo "qual comando vc quer rodar? routes (r) ifconfig (i)
+
+if [ "$comando" = "r" ]
+then
+  route -n
+fi // para fechar o if
+
+-> for statement
+
+for ((i=0;i<=10;i++))
+do
+  echo $i
+  sleep 2 // o sleep é usado para dar uma pausa de segundos entre um comando e outro (no caso 2 segundos)
+done
+
+-> while statement
+
+while sleep 10 // ha cada 10s
+do 
+  pwd
+done
+
+while [ "$sair" =! 1 ] 
+do
+  pwd
+  sair=1
+done
+
+________________________________________________________________________________________________________________________________________________
+
+ARRAYS *****
+
+animais=( "cachorro" "vaca" "boi" ) // sem virgulas e com espaços
+echo ${conjunto[2]} // para imprir tudo coloca-se um * no parâmetro
+
+________________________________________________________________________________________________________________________________________________
+
+CRIANDO UM SCRIPT *****
+mkdir shellscript // criando um diretorio p os scripts
+
+nano script1.sh // criando um arquivo .sh
+  -> ls (coloca um comando desse por exemplo)
+  -> salva dps
+  
+./script1 // não vai funcionar pq se vc abrir o ls -l vai ver que o arquivo não tem permissão de ser executado, então vc precisq dar manualmente
+
+chmod +x script1.sh 
+
+./script1 // agora tudo o que tiver aqui será executado

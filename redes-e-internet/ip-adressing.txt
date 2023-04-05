@@ -1,0 +1,44 @@
+EXPLICAÇÃO ***
+
+-> 4 sequências de números separados por pontos
+    -> {}.{}.{}.{}
+-> Cada sequência terá um número de valor entre 0 à 255
+
+
+1) Dispositivo conecta-se à internet indiretamente
+    -> isto é, conecta-se à uma rede que tem acesso à internet assim que conectada
+2) Após isso, seu endereço IP é atribuído ao seu dispositivo pelo ISP (Internet Service Provider)
+    -> a sua atividade na internet passa pelo ISP e volta para você pelo IP
+    -> como é ele quem concede o acesso à internet, cabe a ele lhe atribuir o IP do seu dispositivo
+3) Caso você desligue e ligue o modem ou roteador, o IP pode ser alterado
+4) Caso você solicite a mudança de IP para o ISP, ele altera
+5) Se mudar de rede, para a de outro ambiente e levar o seu mesmo dispositivo junto com você, o seu
+IP também será alterado, afinal, será gerido pelo ISP do local
+________________________________________________________________________________________________________________________
+
+TIPOS DE ENDEREÇO DE IP***
+
+-> Público:
+    -> é o principal endereço de IP, é fornecido ao roteador pelo ISP
+    -> é o endereço que todos os dispositivos fora da sua rede de Internet usarão para reconhecer a sua rede
+-> Privado:
+    -> Todo dispositivo que se conecta à internet tem um endereço de IP privado (até mesmo dispositivos bluetooth, como 
+    impressoras, smart TVs...)
+    -> Isso porquê, com o aumento da "internet das coisas", criou uma necessidade do roteador para identificar esses dis-
+    positivos separadamente, e muito deles precisam reconhecer uns aos outros.
+
+________________________________________________________________________________________________________________________
+
+PERIGOS ***
+
+-> Como obter o endereço de outras pessoas:
+    -> engenharia social: induzir o usuário pela conversa (gráfica ou social) à agir de forma que revele seu endereço de IP
+    -> ciberstalking: é possivel rastrear um endereço de IP seguindo a atividade online de uma pessoa (videogames, foruns...)
+
+-> Perigos de vazar um IP
+    -> rastreamento: é possível ter a localização exata de uma pessoa pelo IP dela
+    -> crimes: hackers mal intencionados podem usar o seu endereço de IP para realizar atividades ilegais, atraindo atenção
+    da justiça direcionada a você
+    -> ataques DDoS (distributed denial of service): é quando vários dispositivos (já infectados) enviam uma quantidade enorme
+    de tráfego para o endereço de IP de destino, sobrecarregando o dispositivo e impedindo a sua conexão com a internet
+    -> invasão do dispositivo: roubo de informações pessoais (senhas, cartão de crédito, cpf ...), instalação de malware ...

@@ -1,0 +1,15 @@
+- bin: os binarios, cuida do funcionamento do sistema
+- boot: arquivos referentes ao boot
+- dev: os dispositivos (usb, hd, etc. nao se mexe)
+- lib: bibliotecas compartilhadas
+- media: dispositivos vao ser montados nessa pasta
+- opt: se instala outros programas nessa pasta
+- proc: arquivos que mostram propriedades do sistema
+- run: arquivos que estao rodando ou nao (processos)
+- sbin: parecida c o bin
+- srv: do servidor
+- sys: arquivos de sistema (nao se mexe etc)
+- tmp: pasta tmeporaria
+- usr: se instala os programas aqui (games etc)
+- var: onde tem arquivos que vc disponibiliza para servidores (tipo html)
+obs para ver os usuario do sistema: ir em /home e dar ls

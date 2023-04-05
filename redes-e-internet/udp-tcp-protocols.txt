@@ -1,0 +1,31 @@
+EXPLICAÇÃO
+-> Ambos TCP e UDP são protocolos de comunicação usados na internet e em rede de computadores
+-> eles diferem entre sí pela maneira como lidam com o envio e recebimento de dados
+
+________________________________________________________________________________________________________________________
+
+UDP
+-> não é orientado à conexão, isto é, não precisa de uma conexão estabelecida, e não fornece garantia do envio de dados
+    -> ou seja, não há confirmação do recebimento ou correção de erros
+    -> de modo crú, ele, uma vez enviado, "não quer saber mais" e não se importa se a outra parte recebeu, ele só sabe que
+    enviou, e "a parte dele, ele já fez", e "quem tiver la para ver, viu, quem não tiver, perdeu"
+-> por isso, UDP é geralmente mais rápido e eficiente, mas pode levra a perda de dados ou pacotes fora de ordem
+
+-> em comparação
+    -> MENOS CONFIÁVEL
+    -> MAIS RÁPIDO
+    -> MIUTO USADO EM SITUAÇÕES QUE REQUEREM BAIXA LATÊNCIA E ONDE A PERDA DE PACOTES É ACEITÁVEL
+        -> ex: streaming de video, jogos online, transmissão de dados em tempo real ...
+________________________________________________________________________________________________________________________
+
+TCP
+
+-> orientado à conexão, ou seja, antes que qualquer coisa seja enviada, uma conexão precisa ser estabelecida entre ambas
+as partes que se comunicam
+-> é projetado para que os dados sejam entregues sem erros, em ordem e sem perda de pacotes
+
+-> em comparação:
+    -> MAIS CONFIÁVEL
+    -> MENOS RÁPIDO
+    -> MUITO USADO EM SITUAÇÕES QUE REQUEREM GARANTIA DA ENTREGA DE DADOS NA ORDEM CERTA
+        -> transações financeiras, transferência de arquivos, email ...

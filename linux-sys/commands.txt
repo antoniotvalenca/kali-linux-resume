@@ -1,0 +1,110 @@
+----> BASICOS
+
+- man x: mostra o manual daquele comando(ex: ls)
+
+- ls: lista os arquivos
+- ls -l: lista os arquivos com detalhes de hora + permissao
+- ls -a: mostra os arquivos inclusive os ocultos
+- ls -la: combinacao dos dois de cima
+
+- pwd: mostra o diretorio/pasta atual
+
+- cd x: entra numa pasta
+	-> cd Desktop/
+- cd .. (volta uma pasta superior)
+- cd ~ (volta p pasta principal do usuario)
+
+- mkdir novodiretorio: cria um novo diretorio
+
+- rm -r novodiretorio: remove um diretorio
+- rm x: deleta um arquivo
+	-> rm index.jpeg
+  
+- cp x y: copia o conteudo do arquivo x e cola naquela pasta com o nome y
+	-> cp/root/arquivo.py /tmp (copiei o arquivo.py para a pasta
+  
+- mv x y: renomeia o arquivo x como, agora, 'y' 
+
+- whoami (diz quem eh o dono)
+
+- cat x (mostra tudo oq tem dentro do arquivo x)
+	-> cat /root/Desktop/arquivo.py (mostra um codigo python)
+  
+- clear (limpa terminal)
+
+- echo aaskdhjkadh (printa algo na tela, seja um arquivo ou um texto)
+
+- touch arquivoembranco.txt (cria um arquivoembranco.txt)
+
+- nano arquivoembranco.txt (abre uma tela pra vc editar esse arquivo)
+
+- ./sqlmap (executar o arquivo sqlmap, usado para executaveis)
+
+- ps x: (literlamente x) lista os processos que estao rodando)
+
+- kill -9 3111 (matarei o processo 3111 de acordo com o ps x)
+
+- ifconfig (mostra a interface de rede)
+
+-free: mostra o uso de memoria
+____________________________________________________________________________________________________________________________________________
+
+----> PERMISSOES E USUARIOS
+
+- adduser antonio: adiciona um usuario no sistema
+
+- su antonio: entra no usuario antonio
+
+- exit (sai do bash daquele usuario)
+
+  -> quando damos "ls -l":
+	drwxr-xr-x (arquivoespecifico.txt)
+		-> d: diretorio
+		-> r: read (4)
+		-> w: write (2)
+		-> x: execute (1)
+		
+		-> esses valores que coloquei do lado das palavras acima,
+		indica um jeito alternativo de representar a permissao
+		ao inves de letras (rwx) por numeros (4 2 1)
+		-> ou seja, teremos, no final, sempre 3 numeros (um p cada
+		grupo). EX: no caso do arquivoespecifico.txt, esse numero
+		seria 751 (4+2+1 1+4 1)
+		
+  -> sao 3 grupos de letras
+		1) permissoes do seu usuario
+		2) permissoes do seu grupo
+		3) permissoes de todos os usuarios
+
+- chown antonio:antonio arquivoespecifico.txt (estou dizendo que so o usuario
+antonio pode mexer nesse arquivo, a nao ser que seja o root que pode fazer
+tudo)
+
+- chmod 777 arquivoespecifico.txt (muda a permissao daquele arquivo)
+- chmod +x arquivoespecifico.sh (agora ele é full executavel)
+____________________________________________________________________________________________________________________________________________
+
+---->  PIPING
+
+- grep antonio: vai buscar arquivos/processos/etc que tenham antonio (usamos em casos de piping)
+
+- | (usado para encadear comandos)
+
+- > (usado para salvar o resultado de um comando em um arquivo)
+- >> (mesma coisa do de cima, mas na intencao de salvar incrementando
+e nao substituindo)
+
+- < (usado para executar um comando e depois gerar um resultado de
+de outro comando que sera salvo)
+
+- & (colocamos entre comandos para roda-los simultaneamente, mas sem
+qualquer correlacao) obs: nao importa a ordem, vao ser rodados ao msm tmp
+- && (mesmo do de cima, mas, para um rodar, o outro tem q rodar primeiro
+de acordo c a ordem)
+
+- ex:
+	ps x | grep gnome (vai buscar por processos que tenham gnome)
+	ps x > arquivo.txt (vai salvar os processos num arquivo.txt)
+	nano novoarquivo.txt < arquivo.txt (vai salvar o que tem em
+					    arquivo.txt no novoarquivo)
+	echo meu nome eh antonio >> novoarquivo.txt (acrescenta ao q ja tem)

@@ -1,0 +1,32 @@
+EXPLICAÇÃO
+
+-> As portas são números, em uma rede, que identificam um processo de comunicação entre dois dispositivos
+-> Quando um dispositivo "a" envia dados para outro dispositivo "b", ele especifica a porta de destino que
+o dispositivo "b" deve ouvir para receber esses dados
+    -> essas portas são portas do servidor daquele serviço
+    -> esse servidor fica escutando, numa porta X, por solicitações de clientes
+    -> no caso do computador do cliente, a porta que usa para se comunicar com o servidor é escolhida pelo sistema
+    operacional automaticamente, geralmente a partir de uma faixa de portas disponíveis
+
+-> Quando você digita o endereço de um site no navegador, o navegador envia uma solicitação para o servidor
+web daquele site, especificando a porta que o servidor web estará ouvindo para receber solicitações de clientes
+    -> nesse caso, por padrão, o protocolo http usa a porta 80 para
+
+-> Número total de portas: 65535
+
+OU SEJA:
+-> Aquele servidor ficará estaticamente escutando por uma porta em sua rede
+-> O cliente (você) irá acessar o endereço daquele site (através de uma porta aleatória que seu próprio computador
+decide), que irá direcionar para a onde o servidor está se comunicando, indo diretamente naquela porta que ele está
+escutando
+
+________________________________________________________________________________________________________________________
+
+PORTAS E TIPOS DE SERVIÇO
+
+80 -> HTTP (Servidor Web)
+443 -> HTTPS (Servidor Web com criptografia)
+25 -> Serviço de e-mails
+3306 -> Servidor de banco de dados MySQL
+
+
