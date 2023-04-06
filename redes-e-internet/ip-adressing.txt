@@ -42,3 +42,12 @@ PERIGOS ***
     -> ataques DDoS (distributed denial of service): é quando vários dispositivos (já infectados) enviam uma quantidade enorme
     de tráfego para o endereço de IP de destino, sobrecarregando o dispositivo e impedindo a sua conexão com a internet
     -> invasão do dispositivo: roubo de informações pessoais (senhas, cartão de crédito, cpf ...), instalação de malware ...
+
+________________________________________________________________________________________________________________________
+
+PEGAR O IP PRIVADO DE UM COMPUTADOR
+
+-> APPLE
+    -> (terminal) ifconfig
+    -> ir em "en0"
+        -> inet xxx.xxx.xxx.xxx (seu endereço)

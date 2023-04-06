@@ -47,6 +47,8 @@
 - ifconfig (mostra a interface de rede)
 
 -free: mostra o uso de memoria
+
+-ping enderecodosite.com (retorna a latência de conexão entre o usuário e aquele servidor do site, mas tb diz o IP daquele servidor)
 ____________________________________________________________________________________________________________________________________________
 
 ----> PERMISSOES E USUARIOS
