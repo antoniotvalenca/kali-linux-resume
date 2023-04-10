@@ -1,0 +1,45 @@
+import socket
+
+client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+client.sendto(b"DADOS", ("127.0.0.1", 4433))
+    -> por não precisar haver aquela conexão de "aperto de mãos", não
+    se usa o client.connect() e depois o client.send, se usa os dois
+    simultaneamente (cria-se a conexão ao mesmo tempo que são enviados
+    os dados)
+    -> nesse caso estou faezndo um loopback (usando meu proprio ip p/ se
+    conectar comigo mesmo)
+
+print(client.recvfrom(1024))
+    -> nas conexões udp, ao enviar os dados a conexão já é fechada automaticamente
+        -> portanto para se conectar de novo, custa ficar rodando o mesmo código
+    -> o recvfrom vai ficar a espera dos dados antes de fechar a conexão de vez
+    -> esse parametro (numero) é a quantidade de bytes maxima que vai ser recebido
+    -> o output desse print, além de ser a mensagem enviada, também virá uma tupla
+    com o IP da pessoa que enviou + a porta que está sendo usada para a troca de dados
+    -> então, para ficar mais organizado:
+
+data, sender = client.recvfrom(1024)
+
+print(f"MENSAGEM: {data.decode}, IP DO REMETENTE E PORTA DE USO: {sender[0]}")
+
+________________________________________________________________________________________________________________________________________________
+
+CRIANDO UM CHAT
+-> Esse código, por estar dentro de um while True, nunca vai fechar a conexão automaticamente (só manualmente, no ctrl c no terminal)
+import socket
+
+client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+try:
+    while True: # vai dar um loop infinito
+        msg = input("Mensagem: ") + "\n"
+        client.sendto(msg.encode(), ("127.0.0.1", 4433) ) # encode para transformar em bytes
+        data, sender = client.recvfrom(1024)
+        print(f"{sender[0]}: {data.decode}") # decode para destransformar os bytes
+
+        if (data.decode() == "sair\n" or msg == "sair\n"):
+            client.close()
+
+except Exception as error:
+    print("erro de conexão: " + error)

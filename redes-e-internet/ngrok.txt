@@ -1,0 +1,42 @@
+EXPLICAÇÃO
+
+-> É uma ferramenta que permite que outras pessoas acessem uma aplicação sua que ainda não foi publicada
+-> Em outras palavras, uma aplicação que é usada em localhost, permitindo que outras pessoas acessem ela por esse servidor
+que gera um link
+
+1) Baixar o NGROK
+
+1.5) (Sugestão) : ir até o local do ngrok, e colar ele no /bin para que eu possa executar ele universalmente, sem precisar
+entrar sempre no diretório dele
+    -> cp ngrok /bin
+    -> caso não faça isso, só ir no local do arquivo e fazer tudo normalmente tratando como executável (./ngrok * comando *)
+2) Copiar o link de autenticação
+    -> Após criar a conta, você vai em My Authtoken e copia o token
+
+3) Executar o NGROK passando o link de autenticaçao como argumento
+    -> ngrok authtoken * token *
+
+4) CRIANDO O TUNEL
+    -> Criando um tunel HTTP
+        -> ./ngrok http 80
+        -> vai ser mostrada uma tabela com um link http://{}.ngrok.io -> http://localhost:80
+            -> agora todos que acessarem esse link ngrok vai ser direcionado para o localhost da minha máquina na porta 80
+    -> Criando um tunel TCP
+        -> ngrok tcp 456 (porta que será conectado)
+        -> vai ser gerado o link do mesmo jeito
+
+EM SUMA:
+    -> O NGROK vai, basicamente, permitir que você abra uma porta na sua rede do seu computador e gerar um link que, usado
+    por uma pessoa, irá direcionar ela à essa porta que você abriu na sua rede
+    -> Portanto, a sua vantagem é que você não precisa lidar com autorizações do seu roteador ou demais burocracias para
+    permitir a entrada de outras pessoas
+________________________________________________________________________________________________________________________
+
+TESTANDO COM NETCAT
+
+-> Após configurar o ngrok, direcionando a porta específica que você irá abrir, ir no terminal e, enfim, abrir ela com netcat
+    -> nc -lvp 456
+-> Agora, usar o link gerado pelo ngrok
+    -> nc *link*
+        -> o link irá ser (por exemplo): tcp://0.tcp.ngrok.io:10075
+            -> e, na hora de se conectar com o netcat, tirar o : entre "io" e o número e substituir por espaço 

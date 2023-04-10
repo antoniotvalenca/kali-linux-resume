@@ -1,0 +1,14 @@
+EXPLICAÇÃO
+
+-> Socket é uma biblioteca Python que permite a comunicação entre dois computadores na internet
+-> Serve como um canal de comunicação que permite que programas de computador enviem e recebam dados entre si, mesmo em computadores diferentes
+-> São muito úteis na implementação de aplicativos de rede, como:
+    -> jogos online
+    -> bate-papos
+    -> transferência de arquivos
+-> eles ajudam a garantir que os dados sejam enviados e recebidos de forma confiável e eficiente
+-> cria conexão, fecha conexão, escuta numa determinada porta
+-> import socket
+
+-> O socket pode ser usado tanto para se conectar à uma porta já aberta de um servidor/rede, como também para abrir portas para que outras
+pessoas se conectem

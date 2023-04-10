@@ -1,0 +1,37 @@
+import socket
+
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    -> client vai ser o objeto socket
+    -> chama o socket importado
+    -> dps chama o metodo socket (que, de fato, cria o socket)
+        -> dois argumentos são passados dentro do método socket:
+            1) A família (Tipo de IP)
+                -> nesse caso, especificando que ele vai ser IPV4
+            2) o Tipo (Qual protocolo)
+                -> nesse caso TCP
+
+client.connect( ("google.com", 80) )
+    -> o método connect é usado para se conectar no servidor
+    -> Primeiro argumento: uma tupla, que seria o ip
+    -> podemos, também, passar um ip e indicar uma porta que um netcat estaria abrindo para haver uma conexão
+
+client.send(b"oi tudo bem?")
+    -> o método send manda dados para essa conexão
+    -> no argumento, passa os dados que quiser ser mandado
+    -> esses dados precisam ser em bytes (pra isso é só colocar um "b" antes de mandar o que quer mandar em string)
+    -> nesse caso, não vamos receber nada pois o servidor do google estaria esperando receber uma requisição http
+    para enviar dados, já que está na porta 80
+    -> então o certo seria:
+
+client.send(b"GET \ HTTP/1.1\nHost: www.google.com\n\n\n")
+    -> esse formato pode ser visto no próprio header da requisiçao que vc faz no browser
+    -> é uma requisição http de get, em que o host é o google
+
+print(client.recv(1024))
+    -> recv stands for receive
+    -> como argumento, passa a quantidade de bytes que quer receber
+    -> ao ser printado, da pra perceber que o pacote enviado, também, foi em bytes. portanto, precisa-se ser decodificado
+    -> então o certo seria:
+
+pacotes_recebidos = client.recv(1024).decode()
+print(pacotes_recebidos)

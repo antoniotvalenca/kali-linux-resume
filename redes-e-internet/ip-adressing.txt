@@ -1,6 +1,6 @@
 EXPLICAÇÃO ***
 
--> 4 sequências de números separados por pontos
+-> 4 sequências de números separados por pontos (no caso do sistema de ip IPV4)
     -> {}.{}.{}.{}
 -> Cada sequência terá um número de valor entre 0 à 255
 
@@ -16,7 +16,7 @@ EXPLICAÇÃO ***
 IP também será alterado, afinal, será gerido pelo ISP do local
 ________________________________________________________________________________________________________________________
 
-TIPOS DE ENDEREÇO DE IP***
+TIPOS DE ENDEREÇO DE IP ***
 
 -> Público:
     -> é o principal endereço de IP, é fornecido ao roteador pelo ISP
@@ -26,7 +26,7 @@ TIPOS DE ENDEREÇO DE IP***
     impressoras, smart TVs...)
     -> Isso porquê, com o aumento da "internet das coisas", criou uma necessidade do roteador para identificar esses dis-
     positivos separadamente, e muito deles precisam reconhecer uns aos outros.
-
+    -> Ele identifica o seu dispositivo apenas dentro da rede local
 ________________________________________________________________________________________________________________________
 
 PERIGOS ***
@@ -48,6 +48,11 @@ ________________________________________________________________________________
 PEGAR O IP PRIVADO DE UM COMPUTADOR
 
 -> APPLE
-    -> (terminal) ifconfig
+    -> IP PRIVADO: (terminal) ifconfig
     -> ir em "en0"
         -> inet xxx.xxx.xxx.xxx (seu endereço)
+    -> IP ROTEADOR: (terminal) netstat -r
+        -> o valor logo abaixo de gateway
+-> LINUX
+    -> ifconfig para IP do computador
+    -> route -r / route para o do roteador

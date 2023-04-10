@@ -20,6 +20,12 @@ OU SEJA:
 decide), que irá direcionar para a onde o servidor está se comunicando, indo diretamente naquela porta que ele está
 escutando
 
+DE UM JEITO ILUSTRATIVO:
+-> Quando conectado à internet, o seu dispositivo vai dispor de milhares de PORTAS
+-> Caso você abra alguma delas (isto é, tornando elas um servidor), outras pessoas (outros dispositivos) podem entrar
+(acessar) nela, absorvendo os dados que são dispostos no "quarto" que essa porta guarda, ou apenas conversando com a
+pessoa por trás dessa porta (o dispositivo que está servindo de servidor em questão)
+
 ________________________________________________________________________________________________________________________
 
 PORTAS E TIPOS DE SERVIÇO

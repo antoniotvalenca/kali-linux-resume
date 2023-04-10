@@ -1,10 +1,12 @@
 EXPLICAÇÃO
+
 -> Ambos TCP e UDP são protocolos de comunicação usados na internet e em rede de computadores
 -> eles diferem entre sí pela maneira como lidam com o envio e recebimento de dados
 
 ________________________________________________________________________________________________________________________
 
 UDP
+
 -> não é orientado à conexão, isto é, não precisa de uma conexão estabelecida, e não fornece garantia do envio de dados
     -> ou seja, não há confirmação do recebimento ou correção de erros
     -> de modo crú, ele, uma vez enviado, "não quer saber mais" e não se importa se a outra parte recebeu, ele só sabe que
