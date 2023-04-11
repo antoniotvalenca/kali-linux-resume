@@ -1,0 +1,24 @@
+ABRINDO UM SERVIDOR SSH
+
+
+________________________________________________________________________________________________________________________
+
+SE CONECTANDO, COMO CLIENTE, COM UM SERVIDOR SSH (COM PYTHON)
+import paramiko
+
+client = paramiko.SSHClient()
+    -> criando o cliente SSH, que será usado para conectar ao servidor SSH
+
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    -> quando vc se conecta a um servidor ssh pela primeira vez, o paramiko não reconhece a chave
+    SSH do servidor e pode gerar uma mensagem de aviso/erro
+    -> portanto, sem esse comando, o paramiko não aceitará automaticamente a chave SSH do servidor
+    desconhecido e irá interromper a execução do código
+    -> ao definir a política padrão para AutoAddPolicy(), o paramiko irá adicionar automaticamente
+    a chave do servidor desconhecido ao arquivo de conhecimento de chaves
+    -> assim, permitindo que voce se conecte sem receber mensagem de aviso
+
+client.connect(hostname="endereco-ip-servidor", username="username-servidor", password="senha-de-acesso-do-username-do-servidor")
+    -> nos parametros do método connect, passo o ip, nome de usuario e senha (todos da máquina que estaria sendo servidor)
+
+client.exec_command("ls")

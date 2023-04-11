@@ -1,0 +1,74 @@
+import socket
+
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    -> familia: AF_INET (IPV4)
+    -> tipo: SOCK_STREAM (TCP)
+
+try:
+    server.bind( ("0.0.0.0", 9000))
+        -> primeiro argumento: tupla ("ip", port)
+            -> o ip onde o servidor vai escutar
+                -> por estar colocando o ip "0.0.0.0" ele pode ser escutando passando o ip interno (127.0.0.1),
+                o ip local (que é dado pelo roteador) e o externo (nesse caso teria que configurar o roteador
+                para permitir o acesso)
+        -> o bind define o endereço onde o servidor vai ficar escutando
+
+    server.listen(5)
+        -> o listen inicia o servidor e começa a ouvir as conexões de clientes
+        -> o método listen recebe como argumento a quantidade de conexões simultâneas que são aceitas
+            -> ou seja, se eu passo o valor 5 como argumento, significa que a capacidade máxima de cone-
+            xões simultâneas de clientes é 5
+
+    server.accept()
+        -> por fim, o método accept finalmente aceita a conexão
+        -> esse server.accept(), quando você printa na tela, ele retorna uma tupla
+            -> a primeira parte da tupla é um dado socket (parecido com o que é escrito quando se cria
+            um servidor ou um cliente (a familia, o tipo, etc))
+            -> a segunda parte é outra tupla que mostra o endereço do cliente e a porta de saída que o cliente
+            usou para fazer a conexão
+            -> então, ao invés de usar apenas o server.accept, usamos:
+
+    client_socket, address = server.accept()
+    print(f"received from: {address[0]}")
+
+    data = client_socket.recv(1024).decode()
+        -> vai receber dados do cliente como método recv, passando a quantidade de bytes máxima que vai receber
+        dos dados e decodificando (já que os dados vem em formato de bytes). guarda tudo numa variável
+    print(data)
+
+    client_socket.send(input("Enviar mensagem: ").encode())
+        -> envia algo pro cliente e transforma em bytes com encode
+
+    server.close()
+except Exception as error:
+    print(f"Erro: {error}")
+    server.close()
+
+____________________________________________________________________________________________________________________________________________
+
+CRIANDO UM CHAT ENTRE SERVER E CLIENT
+
+import socket
+
+server = socket.socket(socket.AF_INET, socekt.SOCK_STREAM)
+
+try:
+    server.bind( ("0.0.0.0", 9000) )
+
+    server.listen(5)
+    print("listening...")
+
+    client_socket, address = server.accept()
+    print(f"Received from: {address}")
+
+    while true:
+        data = client_socket.recv(1024).decode()
+        print(data)
+
+        client_socket.send(input("Mensagem: ").encode())
+    
+    server.close()
+
+except Exception as error:
+    print(f"Erro: {error}")
+    server.close()

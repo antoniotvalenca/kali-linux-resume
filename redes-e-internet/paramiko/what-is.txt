@@ -1,0 +1,22 @@
+PARAMIKO
+
+-> é uma lib python que fornece comunicação segura por SSH
+-> permite que você crie clientes e servidores SSH
+-> alguns recursos e funcionalidades:
+    -> autenticação por senha
+    -> chaves SSH e autenticação por agente SSH
+    -> execução de comandos remotos
+    -> transferência segura de arquivos
+-> não é built-in, portanto precisa ser instalada
+    -> pip3 install paramiko
+        -> caso não tenha o pip: sudo easy_install pip // para checar: pip3 --version
+
+____________________________________________________________________________________________________________________________________________
+
+O QUE É UMA CONEXÃO SSH (Secure Shell)
+
+-> Ao utilizar uma conexão SSH, você está criando uma conexão segura em cima de uma rede não confiável por padrão,
+como a internet pública, garantindo a confidencialidade e integridade das informações transmitidas
+-> Em suma, a conexão SSH cria um túnel criptografado e seguro entre dois computadores, fornecendo uma camada de
+segurança adicional, garantindo que apenas as infos. que passam pelo túnel possam ser lidas e compreendidas pelos
+destinatários autorizados
