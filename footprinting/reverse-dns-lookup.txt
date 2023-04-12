@@ -1,0 +1,45 @@
+PESQUISA DE DNS PADRÃO VS. DNS REVERSO
+
+-> Na pesquisa de DNS padrão, usa-se um domínio para descobrir o seu IP
+-> Já na pesquisa de DNS reverso, usa-se o IP para ter mais informações sobre um domínio ou
+todos os domínios associados àquele IP (que acaba sendo o foco principal desse tipo de busca)
+-> Isso é útil pois, às vezes, alguns outros domínios ou subdomínios estão associados à um mesmo servidor
+(portanto, todos tendo o mesmo IP público)
+-> A utilidade desse método seria achar vulnerabilidade no servidor através de sites com uma segurança menor e
+que portam o mesmo IP
+-> para checar
+    -> ping site.com
+        -> output: o ip público do site
+    -> yougetsignal .com /tools/web-sites-on-web-server/
+        -> jogar o ip e ver todos os sites que partilham do mesmo servidor
+
+________________________________________________________________________________________________________________________
+
+TABELA DNS (DOMAIN NAME SYSTEM)
+
+1)
+-> quando você acessa um site, o navegador precisa saber o endereço de IP do servidor que hospeda o site para se conectar
+e baixar o conteúdo
+-> em vez de você digitar o endereço de IP do site, voc^digita seu nome de domínio (ex: google.com)
+    -> o navegador então envia uma solicitação ao servidor DNS para descobrir o endereço de IP correspondente ao nome do domínio
+
+________________________________________________________________________________________________________________________
+entenda:
+
+[voce digita o endereço de um site] => [o navegador envia uma solicitacao de busca para o servidor DNS] =>
+[o servidor DNS verifica sua tabela DNS para localizar o endereço de IP correspondente ao dominio solicitado] =>
+[o servidor DNS responde à solicitação do navegador com o endereço IP correspondente] => [o navegador usa o endereço
+IP para se conectar ao servidor que hospeda o site] => [o servidor web recebe a solicitação e envia de volta o conteúdo] =>
+[navegador exibe o conteudo na tela]
+
+-> obs: esse endereço de IP seria o IP público do site, que aponta para o seu servidor (e que, portanto, é o endereço de IP do servidor)
+
+EM SUMA:
+-> O navegador envia uma solicitação ao servidor DNS, que retorna o endereço de IP público daquele site, em seguida, o navegador usa esse
+endereço de IP para se conectar ao servidor que hospeda o site e solicitar o conteúdo dele
+
+
+________________________________________________________________________________________________________________________
+2)
+-> todo site possui uma tabela DNS, que armzena nomes de domínio e seus endereços de IP
+-> o servidor DNS verifica sua tabela DNS para localizar o endereço IP do nome de domínio solicitado

@@ -1,0 +1,13 @@
+EXPLICAÇÃO
+
+-> footprinting é o processo de coleta de informações sobre um alvo
+-> é uma etapa importante no planejamento de um ataque cibernético
+-> ele coleta informações pessoais sobre o alvo, como:
+    -> nomes
+    -> domínios
+    -> emails
+    -> documentos
+    -> redes sociais
+    -> endereço
+    -> etc
+-> o objetivo é coletar o máximo de informações possível, para, possivelmente, facilitar um futuro ataque

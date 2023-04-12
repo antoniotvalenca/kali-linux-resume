@@ -1,0 +1,14 @@
+WHO IS
+-> who.is
+-> registro. br/tecnologia/ferramentas/whois
+-> Coleta infos. de domínios
+    -> quando ele foi registrado
+    -> email, telefone, endereço, cpf/cnpj, responsáveis, contato
+
+-> Serviços de privacidade de domínio podem mascarar essas infos.
+    -> ex de domínio que mascara os seus próprios dados:
+        -> bancocn.com
+    -> serviços que mascaram:
+        -> domains by proxy
+        ->whoisguard
+        -> privacyprotect

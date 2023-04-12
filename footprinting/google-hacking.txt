@@ -1,0 +1,49 @@
+GOOGLE HACKING
+
+-> trata-se de uma técnica de pesquisa avançada no Google que permite aos usuários encontrar informações específicas
+sobre o que eles estão procurando
+
+-> TÉCNICAS
+
+    -> usando o -word
+        -> pesquisar associando um sinal de "-" à uma palavra, irá tirar ela do filtro da pesquisa
+        -> ex: PESQUISA (folklore -taylor -álbum)
+            -> essa pesquisa irá pesquisar por folklore mas tirar o folklore como algo associado à taylor swift ou
+            à um álbum musical
+
+    -> usando site:siteespecifico.com
+        -> pesquisar apenas focado no site
+        -> ex: PESQUISA (antonio site:facebook.com)
+            -> só terão pesquisas com "antonio" associado ao facebook
+     
+    -> usando inurl:"x"
+        -> pesquisa por sites que possuem, dentro do endereço url, aquilo específico
+        -> ex: PESQUISA(inurl:"?id=")
+            -> vai achar sites que, dentro do url, tem esse texto
+                -> www.verdao.net/colunas.php?id=1172 (exemplo de site real)
+
+    -> usando intext:"x"
+        -> só pesquisa por sites que possuem em algum lugar do seu escopo de texto o que está entre ""
+        -> ex: PESQUISA (intext:"right syntax to use near")
+            -> vai achar sites que possuem esse texto em algum lugar deles
+
+    -> usando intitle:"x"
+        -> só pesquisa por sites que possuem em seu titulo aquilo entre ""
+        -> ex: PESQUISA (intitle:"index of")
+            -> vai achar sites que em seu titulo tem index of
+
+    -> filetype:x
+        -> pesquisa por sites que estão armazenando arquivos com a extensão x
+
+    -> site.com/robots.txt
+        -> é um atalho (que funciona em alguns sites) para entrar numa página que comunica com os crowlers/spiders
+        do google para desautorizarem acesso à algumas páginas que deveriam ser restritas
+        -> ex: (BROWSER) rita.dot.gov/robots.txt
+            -> vai abrir uma página de links que desautoriza o google à adicionar em seus spiders
+
+________________________________________________________________________________________________________________________
+
+GHDB (GOOGLE HACKING DATA BASE)
+-> www. exploit-db .com /ghdb/
+-> É uma seção do Exploit-DB que contém pesquisas e operadores do google hacking que podem ser usados
+para encontrar informações sensíveis e vulnerabilidades em sistemas e redes
