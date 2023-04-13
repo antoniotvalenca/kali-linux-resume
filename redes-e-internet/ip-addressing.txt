@@ -1,8 +1,11 @@
 EXPLICAÇÃO ***
 
--> 4 sequências de números separados por pontos (no caso do sistema de ip IPV4)
+-> IPV4: 4 sequências de números separados por "."
     -> {}.{}.{}.{}
--> Cada sequência terá um número de valor entre 0 à 255
+    -> Cada sequência terá um número de valor entre 0 à 255
+-> IPV6: 8 sequências de números separados por ":"
+    -> {}:{}:{}:{}:{}:{}:{}:{}
+    -> Cada sequência possui 4 dígitos, que equivalem à um valor hexadecimal
 
 
 1) Dispositivo conecta-se à internet indiretamente

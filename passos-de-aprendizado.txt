@@ -1,0 +1,5 @@
+1) FOOTPRINTING
+    -> whois e privacidade
+    -> dns e bruteforce com palavras-chave
+
+obs: crt.sh - ver sobre 

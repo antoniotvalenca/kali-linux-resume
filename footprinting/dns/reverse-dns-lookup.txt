@@ -1,0 +1,79 @@
+PESQUISA DE DNS PADRÃO VS. DNS REVERSO
+
+-> Na pesquisa de DNS padrão, usa-se um domínio para descobrir o seu IP
+-> Já na pesquisa de DNS reverso, usa-se o IP para ter mais informações sobre um domínio ou
+todos os domínios associados àquele IP (que acaba sendo o foco principal desse tipo de busca)
+-> Isso é útil pois, às vezes, alguns outros domínios ou subdomínios estão associados à um mesmo servidor
+(portanto, todos tendo o mesmo IP público)
+-> A utilidade desse método seria achar vulnerabilidade no servidor através de sites com uma segurança menor e
+que portam o mesmo IP
+-> para checar
+    -> ping site.com
+        -> output: o ip público do site
+    -> yougetsignal .com /tools/web-sites-on-web-server/
+        -> jogar o ip e ver todos os sites que partilham do mesmo servidor
+
+____________________________________________________________________________________________________________________________________________
+
+FLUXO DE UM SITE (NAMESERVER vs. TABELA DNS (DOMAIN NAME SYSTEM) vs. WEBSERVER)
+
+1)
+-> quando você acessa um site, o navegador precisa saber o endereço de IP do servidor que hospeda o site para se conectar
+e baixar o conteúdo
+-> em vez de você digitar o endereço de IP do site, você digita seu nome de domínio (ex: google.com)
+    -> o navegador então envia uma solicitação ao servidor DNS para descobrir o endereço de IP correspondente ao nome do domínio
+-> elas ficam no nameserver
+
+entenda:
+
+[voce digita o endereço de um site] => [o navegador envia uma solicitacao de busca para o servidor DNS] =>
+[o servidor DNS verifica sua tabela DNS para localizar o endereço de IP correspondente ao dominio solicitado] =>
+[o servidor DNS responde à solicitação do navegador com o endereço IP correspondente] => [o navegador usa o endereço
+IP para se conectar ao servidor que hospeda o site] => [o servidor web recebe a solicitação e envia de volta o conteúdo] =>
+[navegador exibe o conteudo na tela]
+
+-> obs: esse endereço de IP seria o IP público do site, que aponta para o seu servidor (e que, portanto, é o endereço de IP do servidor)
+
+EM SUMA:
+-> O navegador envia uma solicitação ao servidor DNS, que retorna o endereço de IP público daquele site, em seguida, o navegador usa esse
+endereço de IP para se conectar ao servidor que hospeda o site e solicitar o conteúdo dele
+
+
+-> todo site possui uma tabela DNS, que armzena nomes de domínio e seus endereços de IP
+-> o servidor DNS verifica sua tabela DNS para localizar o endereço IP do nome de domínio solicitado
+
+EM SUMA:
+-> Existem 2 servidores: o servidor de nomes (nameserver) responsável por guardar a tabela DNS com os dados do site (tipo seu endereço de IP)
+e o servidor web (webserver), responsável por armazenar o conteúdo do site em si e entregá-lo ao usuário
+-> usuário busca por um site -> o site aponta para o nameserver -> nameserver direciona para o webserver -> webserver manda de volta para o usuário
+
+____________________________________________________________________________________________________________________________________________
+
+ESTRUTURA DA TABELA DNS
+
+-> A tabela DNS possuem os seguintes tipos de entrada de dados:
+    -> A: "a" refere-se ao IP (IPV4) que aquele site aponta
+    -> AAAA: mesmo do de cima, mas guarda o IPV6 ao invés do IPV4
+    -> MX: refere-se ao servidor que vai lidar com o fluxo de email daquele site (ex: googlemail)
+    -> CNAME: é um redirecionamento.
+        -> ex: O meu dominio chamado "tonca" vai criar um CNAME chamado "googlezinho" que vai redirecionar para "google.com""
+            -> então, qunado eu digitar googlezinho.tonca.com, vai ser redirecionado para google.com
+    -> NS: nameserver daquele domínio
+____________________________________________________________________________________________________________________________________________
+
+ACESSAR UMA TABELA DNS (TERMINAL)
+
+-> dig site.com
+    -> printa a tabela DNS, mas normalmente só a entrada "A"
+
+-> dig -t *tipo de entrada* amigotech.com.br
+    -> printa a tabela incluindo o tipo de entrada que está sendo especificada
+    -> ex: dig -t MX site.com
+    -> em alguns domínios, se você digitar o parâmetro de entrada como "ANY" ele trás todos os dados possíveis
+
+-> codigo alternativo: host site.com
+    -> mesmo que dig, mas menos poderoso e mais simples
+    
+-> dnsenum site.com
+    -> deixa tudo muito mais organizado
+    -> ferramenta de linha de comando já no kali linux (pode ser baixada em outras máquinas tb)

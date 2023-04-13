@@ -1,0 +1,18 @@
+DNS SUBDOMAIN BRUTEFORCE
+
+-> em suma, é uma tentativa de achar subdomínios de um domínio principal por colocar palavras chaves em seu url
+-> esses subdomínios deste domínio principal poderiam, possivelmente, ser mais sensíveis à ataques ou, até mesmo,
+conter informações comprometedoras daquele domínio principal
+
+________________________________________________________________________________________________________________________________________________
+
+BRUTEFORCE (usando listão de palavras-chave)
+
+-> repositório: github .com/ rbsec/ dnscan
+-> git clone https:// github. com/rbsec /dnscan.git
+    -> vai clonar no computador
+    -> esse repositório já possui um código padrão para bruteforce
+-> ./dnscan.py -d nomedosite.com -w subdomains-10000.txt
+    -> vai rodar esse bruteforce que esta no codigo python
+    -> após o -d coloca o nome do site
+    -> após o -w coloca o arquivo com todas as palavras que quer checar

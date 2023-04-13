@@ -61,9 +61,9 @@ mkdir shellscript // criando um diretorio p os scripts
 nano script1.sh // criando um arquivo .sh
   -> ls (coloca um comando desse por exemplo)
   -> salva dps
-  
+
 ./script1 // não vai funcionar pq se vc abrir o ls -l vai ver que o arquivo não tem permissão de ser executado, então vc precisq dar manualmente
 
-chmod +x script1.sh 
+chmod +x script1.sh
 
 ./script1 // agora tudo o que tiver aqui será executado
