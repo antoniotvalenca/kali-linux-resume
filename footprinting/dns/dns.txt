@@ -77,3 +77,9 @@ ACESSAR UMA TABELA DNS (TERMINAL)
 -> dnsenum site.com
     -> deixa tudo muito mais organizado
     -> ferramenta de linha de comando já no kali linux (pode ser baixada em outras máquinas tb)
+
+____________________________________________________________________________________________________________________________________________
+
+CRT.SH (ferramenta)
+
+-> Quando o seu site é um site seguro

@@ -1,0 +1,35 @@
+DNS SUBDOMAIN BRUTEFORCE
+
+-> em suma, é uma tentativa de achar subdomínios de um domínio principal por colocar palavras chaves em seu url
+-> esses subdomínios deste domínio principal poderiam, possivelmente, ser mais sensíveis à ataques ou, até mesmo,
+conter informações comprometedoras daquele domínio principal
+
+________________________________________________________________________________________________________________________________________________
+
+BRUTEFORCE (usando listão de palavras-chave)
+
+-> repositório: github .com/ rbsec/ dnscan
+-> git clone https:// github. com/rbsec /dnscan.git
+    -> vai clonar no computador
+    -> esse repositório já possui um código padrão para bruteforce
+-> ./dnscan.py -d nomedosite.com -w subdomains-10000.txt
+    -> vai rodar esse bruteforce que esta no codigo python
+    -> após o -d coloca o nome do site
+    -> após o -w coloca o arquivo com todas as palavras que quer checar
+
+____________________________________________________________________________________________________________________________________________
+
+SUBDOMINIOS NÃO ENCONTRADOS POR BRUTEFORCE
+
+-> crt.sh
+-> é um site que pode ajudar na descoberta de subdomínios dificilmente encontráveis por bruteforce (por ter urls mais especificas)
+-> isso ocorre porquê o site mantém um registro público de todos os certificados digitais emitidos para um determinado nome de do-
+mínio, incluindo os subdomínios
+-> EXPLICACAO DA CERTIFICAÇÃO:
+    -> quando você acessa um site seguro (https://), o servidor web (responsável por guardar as infos do domínio) envia seu certificado
+    digital de segurança para o navegador, que verifica se esse certificado foi emitido por uma autoridade certificadora confiável e se,
+    de fato, é legítimo àquele domínio
+    -> se estiver tudo certo, um cadeado é exibido no topo do navegador. senão (ou se o site simplesmente não possuir), é tido como não-seguro
+-> tem como transformar as informações em json:
+    -> ex: crt. sh/ ?q=amigotech.com.br
+        -> coloca no final do url: &output=json

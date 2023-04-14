@@ -10,5 +10,5 @@ WHO IS
         -> bancocn.com
     -> serviços que mascaram:
         -> domains by proxy
-        ->whoisguard
+        -> whoisguard
         -> privacyprotect

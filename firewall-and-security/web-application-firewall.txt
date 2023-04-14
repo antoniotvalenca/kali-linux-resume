@@ -1,0 +1,8 @@
+WAF (Web Application Firewall)
+
+-> tipo de firewall que protege aplicações web de requisições maliciosas
+    -> os tipos de ataque que bloqueia:
+        -> ataque de monitoramento
+        -> ataque de filtração
+        -> bloqueamento de tráfico
+-> IDS e IPS

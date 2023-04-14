@@ -1,0 +1,90 @@
+BAIXAR DNS LIB
+-> pip install dnspython
+-> python3 arquivoComCodigo.py
+____________________________________________________________________________________________________________________________________________
+CÓDIGO BASE
+
+import dns.resolver
+
+resolver = dns.resolver.Resolver()
+
+try:
+    resultados = resolver.resolve("nomeDoSite.com", "tipoDeEntrada") // tipo de entrada, ex: "A" ou "MX"
+        -> isso aqui vai gerar um array
+    
+    for resultado in resultados:
+        print(resultado)
+
+except:
+    print("subdomínio não existe")
+
+____________________________________________________________________________________________________________________________________________
+
+CÓDIGO COMPLETO
+
+import dns.resolver
+
+resolver = dns.resolver.Resolver()
+target = "sitealvo.com"
+wordlist = ["advanced", "shop", "etc"] // palavras que podem ser subdominios
+
+for subdominio in wordlist:
+    try:
+        sub_target = f"{subdominio}.{target}"
+        resultados = resolver.resolve(sub_target, "A")
+
+        for resultado in resultados:
+            print(f"{sub_target} -> {resultado}")
+    except:
+        pass
+
+____________________________________________________________________________________________________________________________________________
+
+CÓDIGO COMPLETO IMPORTANDO WORDLIST
+
+import dns.resolver
+
+resolver = dns.resolver.Resolver()
+
+with open("wordlist.txt", "r") as arq:
+    wordlist = arq.read().splitlines()
+
+target = "sitealvo.com"
+
+for subdominio in wordlist:
+    try:
+        sub_target = f"{subdominio}.{target}"
+        resultados = resolver.resolve(sub_target, "A")
+
+        for resultado in resultados:
+            print(f"{sub_target} -> {resultado}")
+    except:
+        pass
+
+____________________________________________________________________________________________________________________________________________
+
+CÓDIGO COMPLETO IMPORTANDO WORDLIST E PASSANDO ARGUMENTOS PELO COMANDO INICIAL
+
+import sys
+import dns.resolver
+
+resolver = dns.resolver.Resolver()
+
+try:
+    target = sys.argv[1]
+    wordlist = sys.argv[2]
+except:
+    print("Usage: python3 dnsbrutearquivo.py dominio.com wordlist.txt")
+
+try:
+    with open(wordlist, "r") as arq:
+        sub_targets = arq.read().splitlines()
+except:
+    print("error: can't open file")
+
+for sub_target in sub_targets:
+    subdominio = f"{sub_target}.{target}"
+    resultados = resolver.resolve(subdominio, "A")
+
+    for resultado in resultados:
+        print(f"{subdominio} => {resultado}")

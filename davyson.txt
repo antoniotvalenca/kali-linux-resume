@@ -1,3 +1,0 @@
-1) whois
-    -> guarda infos importantes sobre um dominio
-    -> ex: endereços

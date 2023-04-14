@@ -1,5 +1,6 @@
 1) FOOTPRINTING
-    -> whois e privacidade
-    -> dns e bruteforce com palavras-chave
-
-obs: crt.sh - ver sobre 
+    -> whois, crt.sh, dig, ping
+2) FINGERPRINTING
+    -> dns bruteforce
+3) DETECÇÃO DE SEGURANÇA
+    ->  waf, ids, ips
