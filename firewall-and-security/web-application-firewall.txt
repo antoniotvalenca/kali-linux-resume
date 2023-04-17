@@ -1,8 +1,18 @@
-WAF (Web Application Firewall)
+WAF (Web Application Firewall) /  IDS (Intrusion Detection System) / IP (Intrusion Prevention System)
 
 -> tipo de firewall que protege aplicações web de requisições maliciosas
     -> os tipos de ataque que bloqueia:
         -> ataque de monitoramento
         -> ataque de filtração
         -> bloqueamento de tráfico
--> IDS e IPS
+-> Por que é importante identificar isso?
+    -> para seu computador não ser bloqueado da aplicação em situações que você está fazendo um scanner de
+    vulnerabilidades ou aplicando bruteforces
+    -> se você também souber como funcionam esses firewalls, você pode ser capaz de burlar o sistema dele
+    e aplicar, por exemplo, um sql injection
+-> Comando que detecta presença de web firewall
+    -> wadw00f http:// site.com
+    -> usando nmap
+        -> nmap -p 80,443 site.com --script=http-waf-detect
+            -> http-waf-detect apenas detecta a presença de wafs
+            -> no caso usamos 80 pq é a porta padrão http e 443 pq é a porta padrão https

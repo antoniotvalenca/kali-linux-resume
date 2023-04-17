@@ -1,0 +1,48 @@
+PORT SCANNER
+
+-> você vai fornecer um ip e esse scanner vai dizer quais portas desse servidor estão abertas
+ou não.
+    -> se tem uma porta aberta, é porquê tem um serviço rodando
+    -> ele faz isso mandando requisições e esperando por respostas características
+
+__________________________________________________________________________________________________________________________________________________________
+
+SYN => sincronização
+SYN-ACK => sync acknowledgment
+ACK => acknowledgment
+RST => Reset
+__________________________________________________________________________________________________________________________________________________________
+TCP Scanning
+    -> O mais simples, ele tenta se conectar ao host remoto (servidor) e tenta estabelecer uma conexão na porta específica
+    -> Ele espera pelo "3-way handshake" de uma conexão TCP
+        -> você manda um pacote de conexão, o host responde "estou aqui", e voce manda outro pacote estabelecendo a conexão
+    -> É um método "barulhento" e pode deixar logs como IP do atacante
+    1. o scanner envia um pacote SYN a uma porta específica do sistema alvo
+    2. se estiver aberta a porta, o sistema alvo envia um pacote SYN-ACK, e o scanner recebe esse pacote e envia outro chamado ACK para confirmar a conexão
+    3. se estiver fechada, a porta envia um pacote RST em resposta
+
+SYN Scanning
+    -> Muito parecido com TCP Scanning
+    1. O Syn Scanning envia o pacote de solicitação (SYN), que é o primeiro passo de abertura de uma conexão, ao sistema alvo
+    2. Se a porta tiver aberta, o sistema alvo responderá com um pacote SYN-ACK o scanner já devolve com um RST
+    3. Se tiver fechada, o sistema alvo responde com um pacote RST (reset)
+        -> obs:
+            -> Ao receber o pacote SYN-ACK, o Syn pode decidir se encerra a conexão enviando um pacote RST ou continuar com a conexão enviando um ACK final.
+            isso permite que o scanner syn determine quais portas estão abertas sem estabelecer uma conexão completa, o que pode ser mais rápido e menos
+            detectável do que outros métodos
+    -> há mais controle sobre o scan, pois os pacotes de conexão são forjados
+    -> era o que as pessoas mais usavam no nmap, mas os firewalls começaram a criar bloqueios desses pacotes
+
+UDP Scanning
+    -> É lento e não é tão confiável, já que o protocool UDP não emite resposta em uma conexão, fica difícil saber se uma porta está aberta ou fechada
+        -> porém, quando a porta está fechada é emitido um pacote IMCP ocm a mensagem de porta fechada
+        -> portanto quando não é emitido nenhuma mensagem, a porta é declarada como aberta
+        -> o problema é que alguns firewalls cortam o envio do IMCP, o que pode causar uma falsa interpretação
+
+FINN Scanning
+    1. O scanner envia um pacote FIN para uma porta específica
+    2. se a porta estiver aberta, o sistema alvo ignorará o pacote FIN
+    3. se estiver fechada, o sistema alvo enviará um pacote RST em resposta ao FIN
+    -> Em suma, a porta fechada responde com um RST enquanto a porta aberta só ignora a conexão
+
+IMCP
