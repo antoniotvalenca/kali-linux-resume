@@ -20,7 +20,12 @@ TCP Scanning
     1. o scanner envia um pacote SYN a uma porta específica do sistema alvo
     2. se estiver aberta a porta, o sistema alvo envia um pacote SYN-ACK, e o scanner recebe esse pacote e envia outro chamado ACK para confirmar a conexão
     3. se estiver fechada, a porta envia um pacote RST em resposta
-
+    -> nc -zv <ip> <port>
+        -> checa se aquela porta esta aberta ou fechada
+        -> fazendo o teste:
+            -> ABRINDO A PORTA: service ssh start
+            -> CHECANDO A ABERTURA: nc -zv 127.0.0.1 22 (porta default de um serviço ssh)
+                -> obs: posso colocar nc -zv 127.0.0.1 1-60000 para checar da 1 ate a 60000 
 SYN Scanning
     -> Muito parecido com TCP Scanning
     1. O Syn Scanning envia o pacote de solicitação (SYN), que é o primeiro passo de abertura de uma conexão, ao sistema alvo

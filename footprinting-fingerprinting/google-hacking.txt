@@ -15,7 +15,7 @@ sobre o que eles estão procurando
         -> pesquisar apenas focado no site
         -> ex: PESQUISA (antonio site:facebook.com)
             -> só terão pesquisas com "antonio" associado ao facebook
-     
+
     -> usando inurl:"x"
         -> pesquisa por sites que possuem, dentro do endereço url, aquilo específico
         -> ex: PESQUISA(inurl:"?id=")

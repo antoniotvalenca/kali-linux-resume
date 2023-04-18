@@ -1,0 +1,73 @@
+EXPLICAÇÃO
+
+-> Autoexplicativo: o nmap (network map) é uma ferramenta de mapeamento de rede
+-> Funcionalidades:
+    -> TCP Scanning
+    -> UDP Scanning
+    -> SYN Scanning
+    -> Verificar quais serviços estão rodando na porta
+    -> Identifica qual OP.SYS ta arodando por trás do host
+    -> Análise de vulnerabilidade
+    -> Exploração de vulnerabilidade
+
+____________________________________________________________________________________________________________________________________________
+
+NMAP
+
+-> NMAP de seu própri IP:
+=> nmap 127.0.0.1
+    -> faz o scan de portas
+    -> (parametro: -p 1-3000) analisa as portas 1 à 300
+    -> (parametro: -p 1-3000,3306) analisa as portas 1 à 3000 e a 3306
+
+-> NMAP de um site:
+=> nmap site.com
+
+-> NMAP de uma série de IPS:
+=> nmap 192.168.100.0/24
+    -> faz o scan de todos os ips 192.168.100.{0-255}
+=> nmap 192.168.0.0/16
+    -> faz o scan de todos os ips 192.168.{0-255}.{0-255}
+
+-> NMAP de um arquivo que contém uma lista de IPS:
+=> nmap -iL listas_de_ip.txt
+
+-> NMAP para ver as versões do serviços qe estão rodando
+=> nmap -sV <ip>
+
+-> NMAP para ver o sistema operacional de uma máquina
+=> nmap -O <ip>
+
+-> NMAP salvando o output num arquivo
+=> nmap <ip> -sS -p 1-5000 -oN output_nmap
+    -> ele faz um SYN Scan entre as portas 1-5000 e o -oN é um comando para guardar todo o output no arquivo output_nmap
+
+-> NMAP verificando quais dispositivos daquela rede estão online ou offline
+    -> isto é, ligado/conectado à rede por meio de uma conexão com fio ou sem fio, capaz de se conectar com outros dispositivos
+=> nmap 192.168.6.0/24 -sn
+    -> -sn faz o ping
+    -> o 0/24 -> itera sob todos os ips possiveis entre 1-255
+____________________________________________________________________________________________________________________________________________
+
+SCANNINGS
+obs: alguns scannings requerem usar sudo
+
+-> *** TCP Scanning ***
+    -> nmap <ip> -p <port> // (Porta específica)
+    -> nmap <ip> // (Todas as portas)
+
+-> *** UDP Scanning ***
+    -> nmap <ip> -l <port> -sU // (Porta específica)
+    -> nmap -sU <ip> // (Porta específica)
+    -> nmap -sU <ip> -p - // vai fazer de todas as portas possíveis (Das 65 mil e poucas)
+
+-> *** SYN Scanning ***
+    -> nmap <ip>
+    -> nc <ip> -p <port> -sS
+    -> se estiver aberta, o status estará como "open"
+
+____________________________________________________________________________________________________________________________________________
+
+TESTE DE VULNERABILIDADE
+
+- nmap 127.0.0.1 --script vuln

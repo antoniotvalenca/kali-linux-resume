@@ -1,6 +1,8 @@
 1) FOOTPRINTING
-    -> whois, crt.sh, dig, ping
+    -> whois, crt.sh, dig
 2) FINGERPRINTING
     -> dns bruteforce
+    -> ping
 3) DETECÇÃO DE SEGURANÇA
-    ->  waf, ids, ips
+    -> waf, ids, ips com wadw00f (Checar firewalls)
+    -> nmap script para checar vulnerabilidades

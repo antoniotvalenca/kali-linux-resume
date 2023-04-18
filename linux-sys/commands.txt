@@ -110,3 +110,14 @@ de acordo c a ordem)
 	nano novoarquivo.txt < arquivo.txt (vai salvar o que tem em
 					    arquivo.txt no novoarquivo)
 	echo meu nome eh antonio >> novoarquivo.txt (acrescenta ao q ja tem)
+
+____________________________________________________________________________________________________________________________________________
+
+REDES/INTERNET/SERVIÇOS
+
+-> nc <ip> <port>
+	-> se conecta, atraves do netcat, numa porta x de um ip y
+-> service <serviço> <ação>
+	-> abre um serviço na sua rede
+	-> ex: service mysql start (abre um mysql na porta default 3306)
+	-> ex: service ssh stop (supondo que foi startado um ssh [por default na porta 22], ele fecha a porta)
