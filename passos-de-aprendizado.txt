@@ -6,3 +6,8 @@
 3) DETECÇÃO DE SEGURANÇA
     -> waf, ids, ips com wadw00f (Checar firewalls)
     -> nmap script para checar vulnerabilidades
+
+
+BAIXAR:
+-> nmap
+-> dnsenum

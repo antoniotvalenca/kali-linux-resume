@@ -51,3 +51,9 @@ FINN Scanning
     -> Em suma, a porta fechada responde com um RST enquanto a porta aberta só ignora a conexão
 
 IMCP
+
+____________________________________________________________________________________________________________________________________________
+
+QUEM REALIZA PORT SCANNING
+
+-> NMAP
