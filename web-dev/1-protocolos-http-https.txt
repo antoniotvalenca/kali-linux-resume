@@ -1,0 +1,61 @@
+PROTOCOLO HTTP
+
+-> LOCAL: Camada de Aplicação
+-> Controla como as informações sao processadas e respondidas, através de um fluxo de dados
+
+-> Toda vez que vamos fazer uma requisição web, enviamos um cabeçalho HTTP (request header) para o servidor
+    -> COMPONENTES DO REQUEST HEADER:
+        -> 1) Método de requisição (get, post, put, etc) + route + HTTP/version
+        -> 2) Host (o domínio/ip)
+        -> 3) os demais parâmetros são opcionais
+            -> ex: quais conteudos aceita (html poro exemplo), qual linguagem ta sendo usada, qual charset
+
+-> Em troca, o servidor nos responde com outro cabeçalho HTTP (responde header) para o cliente:
+    -> COMPONENTES DO RESPONSE HEADER:
+        -> 1) HTTP/version + status code (falha ou sucesso da requisição, ex: 200)
+        -> 2) Data e hora
+        -> 3) outros par
+
+________________________________________________________________________________________________________________________________________________________________
+
+MÉTODOS DE REQUISIÇÃO HTTP
+
+GET -> Solicita a apresentação de um recurso do servidor
+    -> (não dispara uma ação como mexer na integridade dos dados de uma aplicação, portanto é um método seguro)
+
+POST -> Cria um novo recurso no sistema do servidor
+
+DELETE -> Remove um recurso do sistema do servidor
+
+PUT -> Atualiza um recurso no servidor (caso não exista, ele pode criar um)
+    -> A principal diferença entre put e post é que o "post" pode lidar não somente com manipulação de recursos, mas também pode fazer o processamento de informações
+
+HEAD -> Parece como "get", mas só retorna o cabeçalho http daquela requisição
+
+________________________________________________________________________________________________________________________________________________________________
+
+STATUS CODE HTTP
+
+200 -> Bem sucedido
+301 -> URL mudou o endereço permanentemente
+302 -> URL mudou endereço temporariamente
+404 -> Não existe
+405 -> Método não permitido (EX: você da um POST numa página que ta esperando apenas um GET)
+500 -> Erro interno do servidor
+
+________________________________________________________________________________________________________________________________________________________________
+
+PROTOCOLO HTTPS
+
+-> Possui uma camada de proteção (diferentemente do HTTP) que é estabelecida por meio do uso de SSL (Secure Socket Layer) ou TLS (Transport Layer Security)
+-> Esse certificado SSL/TLS cria uma camada de criptografia que assegura que o conteúdo só poderá ser reconhecido pelo servidor e pelo cliente, e não poderá
+ser descriptografado fora disso
+-> O protocolo HTTPS é sobre a comunicação ser segura, e não dizer que o site em sí é seguro
+
+-> Em suma: sem o HTTPS, as infos. são transmitidas em clear text, ou seja, qualquer pessoa que estiver entre o cliente e os servidor poderão interceptar e ler
+essas informações sem nenhuma restrição
+
+EX:
+    -> Você envia um formulário
+    -> O navegador encriptografica a informação contida no forms.
+    -> Envia para o servidor, que desencriptografica

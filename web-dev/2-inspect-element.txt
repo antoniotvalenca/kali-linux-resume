@@ -1,0 +1,25 @@
+ELEMENTS
+    -> Front End
+
+CONSOLE
+    -> Comunicação Javascript com console
+
+SOURCES
+    -> Sites/subdomínios
+
+NETWORK
+    -> Mostra as requisições que são feitas (site.com / status / type / size (bytes) / time)
+        -> Se você clicar naquela requisição, da pra ver os detalhes (os req/res headers)
+
+PERFORMANCE
+    -> Capacidade de performance
+
+MEMORY
+    -> Uso de memória
+
+APPLICATION
+    -> Mostra se o front-end usa algum local storage ou algum cookie
+
+SECURITY
+
+AUDITS

@@ -1,0 +1,109 @@
+SECURITY HEADERS
+
+-> São configurações de headers importantes que zelam pela segurança de aplicação web (seja HTTP ou HTTPS) através
+de seus headers
+
+________________________________________________________________________________________________________________________________________________________________
+
+PRINCIPAIS
+
+X-Frame-Options (CHECAR C DAVYSON)
+    -> O X-Frame-Options avisa ao browser se o site em questão permite que seja "frameado" por sites terceiros
+    -> A configuração correta desse header é capaz de proteger a aplicação de potenciais ataques de clickjacking
+        -> clickjacking é uma técnica de ataque cibernético em que um invasor induz um usuário a clicar em algum elemento
+        de uma página web, indicando que seria algo legítimo quando, na verdade, é malicioso.
+    -> Usando esse header corretamente, o programador protege suas páginas de serem incorporadas em iframes inseguros
+    -> OBS: O "X-Frame-Options" foi substituída pelo Content Security Policy (CSP) com a diretiva "frame-ancestors" em navegadores
+    mais modernos
+        -> SUPORTAM X-FRAME-OPTIONS
+            -> Chrome, Firefox, Microsoft Edge, Safari
+        -> SUPORTAM FRAME-ANCESTORS DENTRO DA CSP
+            -> Chrome (v25 pra cima), Firefox (v23 pra cima), Microsoft Edge (v12 pra cima), Safari (v14 pra cima)
+    -> Parâmetros:
+        -> "DENY": Não pode ser incorporado em nenhum iframe de nenhum site (independente da sua origem)
+        -> "SAMEORIGIN": Só permite ser incorporado o iFrame em um site com o mesmo domínio de origem
+        -> "ALLOW-FROM uri": Permite que a página seja incorporada em um iframe em um site específico, especificado pela URI
+    -> Para aplicar isso, é preciso condigurar no servidor web, adicionando no cabeçalho
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+CONTENT SECURITY POLICE (CSP)
+
+-> Essa medida é versátil pela gama de parâmetros no header à serem manipulados
+-> O CSP permite que os desenvolvedores web especifiquem as fontes de conteúdo confiáveis (Scripts, imagens, estilos, fontes, etc) que um navegador deve consi-
+derar legítimas ou para carregar e executar numa página
+-> IMPLEMENTAÇÃO: cabeçalhos HTTP ou meta-tags no código HTML
+-> CONTENTS E PARÂMETROS:
+    -> default-src: especifíca as origens permitidas para o carregamento de recursos (scripts, imagens, estilos e fontes). se eu disser que é "self", apenas imagens,
+    por exemplo, desse domínio ou de subdomínios poderão ser carregadas
+    -> script-src: especifíca as origens permitidas para a execução de scripts
+    -> img-src ... style-src ... font-src ... media-src (audio e video)
+    -> form-action: especifíca as origens permitidas para envio de formulário
+    -> frame-src: especifíca as origens permitidas para uso de iframes
+
+    -> 'none' bloqueia o uso desse tipo de conteúdo
+    -> 'self' permite o conteúdo apenas da origem do domínio/subdomínio
+-> EXEMPLO DE USO:
+    -> HTML:
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; frame-src 'none' outrodominio.com; script-src 'self' scripts.com;">
+    -> HEADER:
+        Content-Security-Policy: default-src 'self'; frame-src 'self' outrodominio.com; script-src 'self' scripts.com;
+-> Em suma, gira em torno do que será carregado no navegador
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+ACCESS CONTROL ALLOW ORIGIN
+
+-> É uma medida de segurança, colocada no header, que controla o acesso de outros sites à conteúdos do seu próprio site (cross origin)
+-> ou seja, se você não permite que ninguém use, ninguem vai ser capaz de absorver aquele conteúdo
+
+-> PARÂMETROS:
+    -> * (Permite que qualquer domínio possa fazer solicitação de recurso do seu domínio)
+    -> site.com (Indicando um domínio específico, permite que apenas eses domínio(s) possa(m) fazer a solicitação)
+    -> origin (permite que apenas a origem do conteúdo possa ter acesso à passar ele como referência em seu próprio domínio)
+
+-> Em suma, gira em torno dos conteúdos do seu site que poderão ser solicitados e acessados por sites terceiros
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+ACCESS CONTROL ALLOW CREDENTIALS
+
+-> Também passado pelo header, ele é capaz de autorizar/desautorizar a solicitação de cookies/autenticaçãoHttp de aplicações terceiras
+-> Exemplo: você está logado no facebook.com e quer se registrar numa aplicação siteTal.com, usando o login do facebook. O
+Access-Control-Allow-Credentials, se estiver como "true", permitirá isso. Senão, não permitirá
+
+-> Parâmetros:
+    -> true e false (autoexplicativo)
+________________________________________________________________________________________________________________________________________________________________
+
+DEFININDO NO FLASK
+
+-> X-Frame-Option
+
+@app.after_request
+    def add_header(response):
+        response.headers["X-Frame-Options"] = "DENY"
+        return response
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+DEFININDO NO NODE/EXPRESS
+
+-> Access-Control-Allow-Origin
+
+const express = require('express');
+const app = express();
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://www.example.com');
+    next();
+});
+
+-> Access-Control-Allow-Credentials
+
+const express = require("express");
+const app = express();
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'true');
+    next();
+})
