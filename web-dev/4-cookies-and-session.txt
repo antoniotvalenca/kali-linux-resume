@@ -1,0 +1,23 @@
+O QUE SÃO COOKIES E SESSÕES
+
+COOKIES
+
+-> São pequenos arquivos de texto que são armazenados no dispositivo do usuário quando ele acessa um site
+    -> eles são enviados do servidor do site para o equipamento do user (dispositivos moveis, computador, etc)
+-> Eles guardam informações específicas daquele site, como idioma usado, informações de login, histórico de navegação, etc
+
+-> Quando o usuário acessa aquele mesmo site novamente, o navegador envia os cookies de volta para o servidor, permitindo que o site,
+ao reconhecer tal usuário, personalize a experiência de acordo com as suas informações salvas
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+SESSÕES
+
+-> Sessões são como "cookies temporários" (muito quote unquote) em que guardam informações do estado daquela experiência
+-> Ou seja, armazena informações sobre as ações do usuário, como itens adicionados à um carrinho, páginas visitadas, etc de maneira temporária
+-> uma sessão inicia quando um usuário acessa um site/app e termina quando ele fecha o navegador ou quando a sessão é encerrada pelo servidor
+
+________________________________________________________________________________________________________________________________________________________________
+
+MANIPULANDO COOKIES E SESSÕES
+

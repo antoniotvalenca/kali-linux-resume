@@ -7,7 +7,7 @@ ________________________________________________________________________________
 
 PRINCIPAIS
 
-X-Frame-Options (CHECAR C DAVYSON)
+X-Frame-Options
     -> O X-Frame-Options avisa ao browser se o site em questão permite que seja "frameado" por sites terceiros
     -> A configuração correta desse header é capaz de proteger a aplicação de potenciais ataques de clickjacking
         -> clickjacking é uma técnica de ataque cibernético em que um invasor induz um usuário a clicar em algum elemento

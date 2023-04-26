@@ -1,0 +1,42 @@
+CURL
+
+-> é uma ferramenta de linha de comando que realiza transferencia de dados por meio de protocolos de rede (http, https, ftp, ftps, scp ...)
+    -> permite que você envie e receba dados
+
+
+-> curl http://site.com
+    -> traz os dados html/css/script de tal site
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+COMANDOS E PARÂMETROS
+
+-> -i
+    -> traz, também, o cabeçalho da requisição de solicitação
+
+-> -L
+    -> redireciona em casos de precissar redirecionar (ex: o site é programado pra redirecoinar para a rota /index)
+
+-> -H "header: específica"
+    -> após o -H, voce passa, entre aspas, algum aspecto de header que voce ache relevante passar para a requisição de solicitação (ex: um
+    cookie de autorização)
+
+-> -X MétodoDeRequisiçao
+    -> após o -X, você específica qual método será executado (GET, POST, DELETE) (por default é GET quando não é passado o -X)
+
+________________________________________________________________________________________________________________________________________________________________
+
+WGET
+
+-> muito parecido com o curl, mais utilizada para baixar arquivos na internet.
+
+-> wget site.com
+    -> vai baixar o conteúdo html desse site
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+COMANDOS E PARÂMETROS
+
+-> --header "header: específica"
+    -> passa uma header como parâmetro da requisição
+-> -S
+    -> inclui o header no conteúdo salvo
