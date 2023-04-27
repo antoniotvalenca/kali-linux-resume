@@ -32,9 +32,8 @@ SYN Scanning
     2. Se a porta tiver aberta, o sistema alvo responderá com um pacote SYN-ACK o scanner já devolve com um RST
     3. Se tiver fechada, o sistema alvo responde com um pacote RST (reset)
         -> obs:
-            -> Ao receber o pacote SYN-ACK, o Syn pode decidir se encerra a conexão enviando um pacote RST ou continuar com a conexão enviando um ACK final.
-            isso permite que o scanner syn determine quais portas estão abertas sem estabelecer uma conexão completa, o que pode ser mais rápido e menos
-            detectável do que outros métodos
+            -> Ao receber o pacote SYN-ACK, o Syn pode decidir se encerra a conexão enviando um pacote RST ou continuar com a conexão enviando um ACK final (que
+            resultaria numa conexão TCP). isso permite que o scanner syn determine quais portas estão abertas sem estabelecer uma conexão completa, o que pode ser mais rápido e menos detectável do que outros métodos
     -> há mais controle sobre o scan, pois os pacotes de conexão são forjados
     -> era o que as pessoas mais usavam no nmap, mas os firewalls começaram a criar bloqueios desses pacotes
 

@@ -1,0 +1,20 @@
+NETCAT (linha de comando)
+-> cria conexões entre sistemas e permite troca de dados (através da abertura de portas)
+
+NGROK (linha de comando)
+-> permite que pessoas de outras máquinas tenham acesso a uma aplicação que esteja rodando no seu localhost
+
+NMAP (linha de comando)
+-> faz port scanning, verifica quais serviços estao rodando em tal porta, etc
+
+CURL/WGET (linha de comando)
+-> permite transferencia de dados atraves de diversos protocolos de rede (http, https, ftp, smtp...)
+
+WHOIS (linha de comando) (site)
+-> faz fingerprinting de um domínio/servidor (informações sociais, ip, etc)
+
+WADW00F (linha de comando)
+-> detecta firewalls
+
+CRT.SH (site)
+-> encontra subdominios de um domínio principal

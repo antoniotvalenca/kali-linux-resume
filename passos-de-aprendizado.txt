@@ -1,20 +1,4 @@
 --> WHERE TO START <--
 
-1) FOOTPRINTING
-    -> whois, crt.sh, dig
-
-2) FINGERPRINTING
-    -> ping
-    -> dns bruteforce
-
-3) DETECÇÃO DE SEGURANÇA
-    -> waf, ids, ips com wadw00f (Checar firewalls)
-    -> nmap script para checar vulnerabilidades
-
-BAIXAR:
--> nmap
--> dnsenum
--> ncat
--> wget
--> curl
--> wadw00f
+1) redes e internet
+2) footprinting e fingerprinting

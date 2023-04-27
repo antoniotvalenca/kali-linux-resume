@@ -1,37 +1,20 @@
-import socket
+from urllib import request, parse
 
+header = {
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
+    "cookie": "__cf_bm=9RJnrO6isBDMfPL3BxHse0sUy8FQP8ltQXCW3r8iz.M-1682604539-0-Acv826j/mNHbC1EzrXWfwG7JjlUQTWNDv08urBYkavVrA/ZeRzRdCI3EvBOJaI84ZrbPhgmdRRaROc/h2G48KhCWqZc6wPjuX4aLHODKp4G9",
+}
 
-def scan(host, ports):
-    opened_ports = []
-    try:
-        for port in ports:
-            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            client.settimeout(0.5)
+dados = {
+    "login-username": "Heartfilia",
+    "login-password": ""
+}
 
-            status_code = client.connect_ex((host, port))
+dados = parse.urlencode(dados).encode()
 
-            if status_code == 0:
-                opened_ports.append(port)
+req = request.Request(
+    "https://www.habblive.in/", headers=header, data=dados)
+res = request.urlopen(req)
 
-        print(f"HOST: {host} // OPEN_PORTS: {opened_ports}")
-
-    except Exception as e:
-        print(e)
-
-
-if __name__ == "__main__":
-    if len(sys.argv) >= 2:
-        host = sys.argv[1]
-
-        if len(sys.argv) >= 3:
-            ports = sys.argv[2].split(",")
-            ports = [int(port) for port in ports]
-
-        else:
-            ports = [21, 22, 23, 25, 80, 443, 445, 8080, 8443, 3306, 139, 135]
-
-        scan(host, ports)
-
-    else:
-        print("Usage: python portscan.py <ip/domain> <port/ports>")
-        print("EX: python portscan.py google.com 22,23,80")
+html = res.read()
+print(html)
