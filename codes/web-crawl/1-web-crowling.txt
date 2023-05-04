@@ -1,0 +1,16 @@
+RECONHECIMENTO WEB E WEB-CROWLING
+
+-> É sobre você ser capaz de chegar numa aplicação web e identificar todos os caminhos possíveis à serem explorados
+-> Manualmente isso pode ser potencialmente muito trabalhoso, então, para isso, usamos web-crowler (programinhas que entram em 
+determinado site e tentam achar todos os URLs)
+    -> O google, por exemplo, é um web-crowler. Mas existem caminhos que nem mesmo o google consegue achar, pois nenhum site aponta para
+    aquele caminho (isto é, um URL "escondido")
+
+MÉTODOS SUPERFICIAIS DE WEB-CROWLING
+
+-> google hacking
+-> site.com/robots.txt
+    -> o robots.txt indica aos robores do google quais caminhos não devem ser considerados URLs acessíveis para quem pesquise o nome daquele site
+-> site.com/sitemap.xml
+    -> alguns sites oferecem o sitemap para o google indexar de maneira melhor
+-> algoritmo de webcrowling (em basedir/codes)
