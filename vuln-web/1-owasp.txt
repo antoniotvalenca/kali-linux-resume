@@ -1,0 +1,27 @@
+OWASP (OPEN WEB APPLICATION SECURITY PROJECT)
+-> organizaçaão sem fins lucrativos que tem como objetivo melhorar a segurança de softwares através de práticas, padrões e ferramentas de segurança
+da informação
+-> ela tem uma lista das 10 principais vulnerabulidades de segurança web, que é atualizada periodicamente
+
+____________________________________________________________________________________________________________________________________________
+
+TOP 10 VULNERABILIDADES WEB
+
+SQL INJECTION:
+    => é a técnica que explora vulnerabilidades para executar comandos mal intencionados no  banco de dados
+
+CROSS-SITE SCRIPTING (XXS):
+    => quando um atacante consegue injetar, através de campos de inserção (como barras de pesquisa, post de comentário, urls manipuladas para outros users)
+    um script que afeta a experiência de outros usuários e, até mesmo, absorve dados privados deles
+
+BROKEN AUTHENTICATION AND SESSION MANAGEMENT:
+    => quando um atacante encontra uma falha de mecanismo de autenticaçao/gerenciamente de sessao e acaba "sequestrando" sessoes de usuarios legitimos
+
+SENSITIVE DATA EXPOSURE:
+    => quando atacantes acessam dados sensiveis (ex: infos de cartao de creditos, senhas, etc) por causa de mecanismos inseguros por trás desses dados
+
+XML EXTERNAL ENTITIES:
+    =>
+
+INSUFFICIENT SECURITY OF DESERIALIZATION:
+    => 

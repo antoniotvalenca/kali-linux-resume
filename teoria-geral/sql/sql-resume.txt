@@ -1,0 +1,28 @@
+SQL (STRUCTURED QUERY LANGUAGE)
+
+-> Linguagem usada para gerenciar banco de dados (mysql, postgres, mariadb, oracle ...)
+-> Ela gira em torno de enviar querys (textos que possuem função administrativa) para a tabela criada e, assim, visualizar ou manipular dados ou
+um conjunto deles
+
+-> PARA ACESSAR PELO TERMINAL
+    -> 1) ligar o servidor do banco de dados
+    -> 2) ir no terminal (supondo que o servidor é do postgres):
+        -> psql -h <nome_do_host> -p <porta_web_que_esta_escutando> -U <nome_do_usuario> -d <nome_do_banco_de_dados>
+        -> psql -h localhost -p 5433 -U amigotech -d urna-eletronica
+
+____________________________________________________________________________________________________________________________________________
+
+RESUMO LINGUAGEM
+
+1) SELECT
+    -> Usada para recuperar dados de uma ou mais tabelas
+    -> *** SELECT nome, sobrenome FROM clientes WHERE idade > 18;
+2) INSERT
+    -> Insere novos registros em uma tabela
+    -> *** INSERT INTO clientes (nome, sobrenome, idade) VALUES ('João', 'Silva', 25);
+3) UPDATE
+    -> Atualiza registros existentes
+    -> *** UPDATE clientes SET idade = 30 WHERE nome = 'João';
+4) DELETE
+    -> Deleta registros de uma tabela
+    -> DELETE FROM cliente WHERE idade > 60

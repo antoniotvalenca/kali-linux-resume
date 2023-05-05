@@ -1,0 +1,116 @@
+SQL INJECTION
+
+-> é um tipo de ataque cibernético que visa explorar vulneravilidades em sistemas que utilizam bancos de dados SQL
+-> acontece quando um atacante consegue inserir um comando SQL dentro de um campo de entrada de dados (formulário, caixa de pesquisa...)
+-> Quando o sistema não trata/valida corretamente essa entrada de dados, o comando SQL é executado no banco de dados sem ser detectado como
+algo malicioso
+    -> isso faz com que o atacante tenha potencial acesso aos dados alí dentro, ou até mesmo modifique/exclua dados
+
+
+
+                                                    SQL INJECTION
+                                      ________________   |   _________________
+                                      |                  |                   |
+                                      V                  v                   V
+                IN BAND (CLASSIC)                   INFERENTIAL             OUT-OF-BAND
+                |            |                   |               |
+            ERROR BASED  UNION BASED    BLIND-BOOLEAN-BASED BLIND-TIME-BASED
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Obs: SQL QUERYS
+    -> SELECT (Seleciona dados) // DELETE (deleta dados) // UPDATE (atualiza dados) // INSERT (insere dados)
+        -> UNION (une querys de select)
+    -> WHERE (filtra dados) // ORDER BY (ordena dados por determinada coluna)
+
+                *tabela cidades*
+    CidadeID        NomeCidade          Estado
+    1               Ribeirão P.         SP
+    2               Belo Horiz.         MG
+    3               Manaus              AM
+
+    QUERY: SELECT nomecidade FROM cidades WHERE estado = "SP" OR estado = "AM"
+    RESPOSTA: Ribeirão Preto, Manaus
+
+____________________________________________________________________________________________________________________________________________
+
+TIPOS DE SQLi
+
+==> IN-BAND (CLÁSSICO)
+    -> é o método mais facil
+    -> o ataque é feito diretamente pela aplicação web e a resposta também é entregue diretamente pela aplicação
+        -> ex: vc faz uma query para saber a tabela de usuários e ele imprime isso na própria página da aplicação
+    -> é o único método capaz de ser feito à mão, e apenas algumas querys são suficientes
+
+    ⁂ Error Based -> quando o invador usa comandos SQL maliciosos para forçar o sistema a exibir erros específicos do "catch/except"
+    para fornecer informações comprometedoras sobre a estrutura do banco de dados
+    ⁂ Union Based -> combina vária querys SQL de SELECT (uma query que informa ao banco de dados que você deseja selecionar dados de uma tabela)
+    para resultar no vazamento de informações do banco (ex: quero os usuarios, quero as senhas, etc)
+                  -> ele ta relacionado a uma falha do servidor de filtragem de querys
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+==> INFERENTIAL (BLIND SQLi)
+    -> É mais difícil de fazer à mão, pois requer muitas requisições para checar informação por informação
+        -> ou seja, exige algum tipo de automação por script ou sqlmap
+    -> É conhecido como "blind sql injection" porquê não temos acesso direto à resposta, apenas ao comportamento da aplicação diante da resposta "escondida"
+    -> ou seja, concluir que as informações que você perguntou estão corretas ou não baseado no jeito como o servidor lida com a requisição feita
+
+    ⁂ Boolean-based Blind SQLi -> baseado na query feita, a resposta da aplicação é sempre "verdadeiro/sim" ou "falso/não"
+    ⁂ Time-based Blind SQLi -> também é boolean based, mas é baseado no tempo de resposta (ou seja, se for verdadeiro o servidor demora um tempo x)
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+==> OUT-OF-BAND
+    -> é o menos comum e é feito fora da aplicação
+    -> é feito através de um shell reverso
+        -> alguns bancos de dados mais raros, tipo o Oracle, possuem funcionalidades de requisicoes http e dns, e o atacante, através de uma shell reversa,
+        explora isso
+
+____________________________________________________________________________________________________________________________________________
+
+PRÁTICA
+
+-> ENCONTRAR SITES ALEATORIOS COM ESSA VULNERABILIDADE DO BANCO DE DADOS
+    -> com google hacking (inurl:"?id=") por exemplo (nao quer dizer q é vulneravel a sql injection)
+-> QUANDO ENCONTRAR
+    -> *url com vulnerabilidade sql* union select *blablabla*
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+INSERINDO O CÓDIGO
+
+-> 1) PARA DESCOBRIR O NUMERO DE COLUNAS TOTAL DA TABELA:
+    -> union select 1
+        ... union select 1, 2, 3 ...
+    -> cada requisicao vc adiciona um ,x+1 até que vai ultrapassar o numero total de colunas e vai exibir um erro, com isso, voce vai saber o total de colunas
+    -> descobrir essa info. é importante pois quando voce for fazer o select de informacoes de fora dessa tabela específica, é importante vc continuar passando 
+    essa quantidade total de parametros
+        -> ou seja, vamos supor que a tabela daquela pagina tem 3 colunas
+            -> id=1 (informacao arbitraria) union select 1, 2 (ambos tb arbitrarios), schema_name from information_schema.schemata
+    -> é importante sabermos a quantidade de colunas da tabela que esta sendo renderizada na pagina porque 
+
+-> 2) DESCOBRIR O NOME DO BANCO DE DADOS
+    -> ?id=-1 union select 1, 2, ..., schema_name from information_schema.schemata
+        -> o motivo o qual usamos o "schema_name from information_schema.schemata" é pq sao tabelas padrão criadas quando vc cria um banco de dados,
+        e elas guardam informacoes sobre o proprio banco de dados em sí
+        -> antes era ?id=1 mas o motivo o qual trocamos para -1 é porque com o id=1 ele vai ter um resultado e com o -1 o resultado será vazio e, desse jeito,
+        a informação que realmente queremos (do schema_name) poderá ser renderizado na tela
+            -> e, a partir de agora, continuaremos usando isso como parametro "-1"
+
+-> 3) DESCOBRINDO O NOME DAS TABELAS
+    -> union select 1, 2, ..., group_concat(table_name) from information_schema.tables where table_schema="nome do banco de dados ^^"
+    -> o group_concat vai concatenar as varias strings que seriam o nome de cada tabela
+    -> information_schema.tables vai pegar as informações sobre as tabelas no banco de dados e usa a cláusula WHERE para restringir a seleção apenas às tabelas no esquema especificado
+
+-> 4) DESCOBRINDO O NOME DAS COLUNAS DAS TABELAS
+    -> union select 1, 2, ..., group_concat(column_name) from information_schema.columns where table_schema="nome do banco de dados" and table_name="nome da tabela específica"
+
+-> 5) AGORA É SÓ JUNTAR AS INFORMAÇOES
+    -> EX: nome de uma tabela -> users
+                                    -> nome dos valores possiveis -> id, login, password
+    -> union select 1, 2, ..., login from nomeDaDataBase.users
+    -> se quiser varias informaçoes:
+        -> union select 1, 2, ..., group_concat(id, ":", login, ":", password )
+            -> obs: o ":" é para ficar mais bonito na concatenaçao
+    -> lembrando que varias senhas vem em formato de hash e é preciso descriptografá-las

@@ -1,0 +1,3 @@
+resumao:
+
+-> basta acessar um dominio e ir explorando ele que quanto mais é explorado, mais urls relacionadas ele vai achando

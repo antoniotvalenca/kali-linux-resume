@@ -18,3 +18,6 @@ WADW00F (linha de comando)
 
 CRT.SH (site)
 -> encontra subdominios de um domínio principal
+
+DIRB (linha de comando)
+-> faz um bruteforce de URLs 
