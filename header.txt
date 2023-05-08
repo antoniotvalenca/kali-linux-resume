@@ -1,0 +1,7 @@
+POST /authenticate HTTP/1.1
+Host: dev-amigo-api.amigo.dev.br
+Accept: application/json, text/plain, */*
+Content-Type: application/json;charset=UTF-8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36
+Content-Length: 33
+{"email":"ewr","password":"werwe"}

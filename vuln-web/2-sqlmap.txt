@@ -1,0 +1,17 @@
+SQLMAP
+
+-> Ferramenta que faz pentesting de SQLi
+-> É compatível com os bancos de dados:
+    -> MySQL, Oracle, PostreSQL, Microsoft SQL Server, SQLite, entre outros
+
+____________________________________________________________________________________________________________________________________________
+
+USO
+
+==> PARÂMETROS
+    -u (seguido da url do site para especificar o alvo)
+    --cookie (seguido do valor do cookie para ser enviado junto a solicitaçao)
+    --data (especifica os dados POST que serao enviados na solicitacao)
+    --level (define o nivel do ataque, quanto maior mais agressivo porem mais lento (1, 2, 3 ..))
+    --threads (especifica a quant. de threads devem ser usadas simultaneamente para explorar a vulnerabilidade)
+        -> 

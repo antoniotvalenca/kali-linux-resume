@@ -6,6 +6,7 @@ NGROK (linha de comando)
 
 NMAP (linha de comando)
 -> faz port scanning, verifica quais serviços estao rodando em tal porta, etc
+-> preferencia pela versao 7.92 pq a versao 7.93 ta com erro de openssl
 
 CURL/WGET (linha de comando)
 -> permite transferencia de dados atraves de diversos protocolos de rede (http, https, ftp, smtp...)
@@ -21,3 +22,5 @@ CRT.SH (site)
 
 DIRB (linha de comando)
 -> faz um bruteforce de URLs 
+
+SQLMAP (linha de comando)

