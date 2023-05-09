@@ -152,3 +152,10 @@ SQL INJECTION COM POST
 
 OBS:
     -> sqlmap -u http://site.com/tal/tal --forms --dbms=mysql --dbs
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+SQLi AVANÇADO
+
+-> É possível, também, fazer SQLinjection manipulando os campos do header da requisição
+-> Esses campos, inclusive, muitos ficam ocultos da própria requisição

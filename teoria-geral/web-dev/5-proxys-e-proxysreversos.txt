@@ -1,0 +1,45 @@
+PROXYS
+
+-> Clientes usam para se proteger
+
+-> São servidores intermediários que interceptam a requisição/resposta entre cliente e servidor
+-> Ele intercepta as solicitações do cliente e as encaminha para o servidor de destino, e, depois, intercepta também a
+resposta desse servidor, encaminhando para o cliente de volta
+
+-> O proxy protege o usuário pois:
+    -> Oculta o endereço de IP do cliente
+        -> quando o cliente se conecta ao servidor através do proxy, o servidor vê o endereço IP do proxy em vez do end. do cliente
+        -> em outros tipos de proxy, o proxy apenas criptografa o tráfego ou remove cabeçalhos http que contenham infos de identificação
+        do cliente
+    -> Bloquea acesso a sites maliciosos ou conteúdo impróprio (protegendo contra malware ou phishing)
+
+-> Além disso, ele melhora o desempenho de uma aplicação por salvar em cache estaticos e scripts
+____________________________________________________________________________________________________________________________________________
+
+PROXYS REVERSOS
+
+-> Servidores usam para se proteger
+-> EX de P.R: Cloudflare
+
+-> Assim como os proxys normais, são servidores que interceptam requisição/resposta entre cliente e servidor
+
+-> O proxy reverso protege o servidor-web pois:
+    -> LOAD BALANCING: distribuem o tráfego de entrada entre vários servidores de destino para evitar sobrecarga de um único servidor, evitando falha
+    por sobrecarga
+    -> Eles filtram tráfego de entrada para bloquear solicitações suspeitas ou maliciosas antes que chegem ao servidor de destino final, assim, protegendo
+    contra SQLi e ataques de DDoS
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+                                        CLIENTE      ----->       CLOUDFLARE     ----->       SITE
+                                    200.200.200.200           190.190.190.190            Conexão recebida
+                                                                                        de 190.190.190.190
+                                                                                        HEADER:
+                                                                                        X-forwarded-for: 200.200.200.200
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+-> Muitos proxys reversos enviam no cabeçalho esse x-forwarded-for pois é importante ter controle dos IPs 
+    -> Ou seja, o IP que chega ao servidor web é o do próprio proxy reverso que protege o servidor, nao do usuário,
+    mas, o proxy reverso pode adicionar um cabeçalho HTTP "x-forwarded-for" que contém o IP do usuário original
+
