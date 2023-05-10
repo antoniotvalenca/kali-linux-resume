@@ -35,6 +35,8 @@ Obs: SQL QUERYS
 ____________________________________________________________________________________________________________________________________________
 
 TIPOS DE SQLi
+OBS: Normalmente SQLi funciona com links que em sua URL indicam parametros de uma query SQL. ex:
+    -> http://testphp.vulnweb.com/listproducts.php?cat=2
 
 ==> IN-BAND (CLÁSSICO)
     -> é o método mais facil

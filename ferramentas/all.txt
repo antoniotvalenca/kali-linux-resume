@@ -24,3 +24,5 @@ DIRB (linha de comando)
 -> faz um bruteforce de URLs 
 
 SQLMAP (linha de comando)
+
+http://testphp.vulnweb.com/ -> para testar 
