@@ -25,4 +25,8 @@ DIRB (linha de comando)
 
 SQLMAP (linha de comando)
 -> faz sqlinjection para descobrir infos do banco de dados (nome do banco/de tabelas/ de colunas/de dados)
-http://testphp.vulnweb.com/ -> para testar 
+http://testphp.vulnweb.com/ -> para testar
+
+EXIFTOOLS (linha de comando)
+-> mexe com metadados de arquivos/imagens etc
+-> usado para inserçao de codigo malicioso dentro de imagens (um arquivo legitimo que camufla o codigo) para webshells
