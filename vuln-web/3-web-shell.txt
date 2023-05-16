@@ -97,7 +97,7 @@ isso porque sao caracteres especiais no shell, portanto, é necessário fazer um
 
 3) UPLOAD NO SITE E SHELL REVERSA
 -> agora basta fazer o processo de sempre de fazer o upload no site e ir até o url que se encontra essa imagem.
--> mas, neste caso, você terá que fazer o inspect element e procurar o código da imagem, clicá-lo e executar os comandos a partir do url gerado pelo click da imagem
+-> mas, neste caso, voc ê terá que fazer o inspect element e procurar o código da imagem, clicá-lo e executar os comandos a partir do url gerado pelo click da imagem
     -> ex: site.com/admin/uploads/93024329.jpg
     -> site.com/admin/uploads/93024329.jpg?cmd=ls
         -> pronto, agora, em algum lugar de dentro dos caracteres que simbolizam a imagem, vai ter o echo do que você pedir do sistema do servidor

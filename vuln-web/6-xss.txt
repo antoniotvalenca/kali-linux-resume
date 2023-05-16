@@ -1,0 +1,19 @@
+XSS (Cross Site Scripting)
+
+-> É quando um invasor injeta, através de headers/inputs/etc um script que é capaz de desconfigurar um site
+-> Esse script podem ter várias finalidades, tanto de roubar dados quanto de desmanchar o site
+    -> é muito comum que seja usado para roubar cookies e session id de usuários
+
+-> Existem 3 tipos:
+    -> REFLECTED XSS
+        => o código malicioso é injetado em um formulário ou URL, que é então refletido na página web e executado no navegador do usuário
+        => é menos agressivo pois só é renderizado no navegador do atacante ou da pessoa que clica na url maliciosa
+        => esse script pode, por exemlpo, roubar a sessao da vitima
+        => mais voltada à engenharia social
+        => ex: https://example.com/search?q=<script> *codigo malicioso* </script>
+            -> <script>alert("Cookies which do not have HTTPOnly attribute set: " + document.cookie);</script>
+    -> STORED XSS
+        => ocorre quando a entrada fornecida pelo atacante é armazenada no site (ao inves de apenas ser rendnerizada no link infectado pelo script)
+        => Os pontos de entrada típicos para XSS Armazenado incluem fóruns de mensagens, comentários em blogs, perfis de usuário e campos de nome de usuário.
+        => é o mais prejudicial
+        

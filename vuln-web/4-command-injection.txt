@@ -1,0 +1,20 @@
+COMMAND INJECTION
+
+-> Trata-se de um ataque que explora a vulnerabilidade de segurança em meios de entrada (como formulários ou caixas de pesquisa) que
+não recebem o tratamento que deveriam
+-> Essa vulnerabilidade permite que o invasor execute ações maliciosas
+-> O único jeito de lidar com essa vulnerabilidade é sempre tratar as entradas de dados (filtragem, sanitização, execução limitada de comandos)
+
+___________________________________________________________________________________________________________________________________________________________
+
+EX PRÁTICO
+
+1) Existe uma aplicação com um formulário ode pesquisa
+2) esse formulário pesquisa algo no banco de dados
+3) um usuário malicioso pode inserir um comando como ";DROP TABLE usuarios;--"
+    -> isso é sql injection, um subtipo de command injection
+4) outro exemplo: um comando de terminal na entrada
+    -> uma aplicaçao que pede pra inserir um site e ele busca a tabela dns desse site
+        -> site.com && "<?php phpinfo(); ?>" > teste.php
+5) Por fim, confirmando que é possivel realizar um shell reverso nestas entradas de dado, basta criar uma conexao com netcat (como é explicado no topico 3
+deste diretório)

