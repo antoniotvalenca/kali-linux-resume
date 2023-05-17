@@ -12,8 +12,14 @@ XSS (Cross Site Scripting)
         => mais voltada à engenharia social
         => ex: https://example.com/search?q=<script> *codigo malicioso* </script>
             -> <script>alert("Cookies which do not have HTTPOnly attribute set: " + document.cookie);</script>
+
     -> STORED XSS
         => ocorre quando a entrada fornecida pelo atacante é armazenada no site (ao inves de apenas ser rendnerizada no link infectado pelo script)
         => Os pontos de entrada típicos para XSS Armazenado incluem fóruns de mensagens, comentários em blogs, perfis de usuário e campos de nome de usuário.
         => é o mais prejudicial
-        
+
+    -> DOM XSS
+        => quando a aplicação é sensível a html injection mas as tags de script não funcionam, então aproveita-se eventos do DOM (document object model) para enga-
+        tilhar scripts (como eventos de erro causados por tags html)
+            -> ex: site.com/search?q=produto<img src=x onerror="alert(1)">
+            -> https://github.com/payloadbox/xss-payload-list // lista de payloads que podem ser colocados

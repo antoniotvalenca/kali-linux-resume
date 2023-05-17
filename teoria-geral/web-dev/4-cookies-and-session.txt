@@ -17,6 +17,9 @@ SESSÕES
 -> Ou seja, armazena informações sobre as ações do usuário, como itens adicionados à um carrinho, páginas visitadas, etc de maneira temporária
 -> uma sessão inicia quando um usuário acessa um site/app e termina quando ele fecha o navegador ou quando a sessão é encerrada pelo servidor
 
+DIFERENÇA:
+    -> uma sessão é o estado do usuário entre as requisições. quando um usuário faz login em um site, por exemplo, o servidor cria uma sessão
+    para aquele usuário. então é gerado um ID daquela sessão, que é guardado dentro dos cookies
 ________________________________________________________________________________________________________________________________________________________________
 
 MANIPULANDO COOKIES E SESSÕES

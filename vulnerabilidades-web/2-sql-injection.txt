@@ -49,6 +49,9 @@ OBS: Normalmente SQLi funciona com links que em sua URL indicam parametros de um
     ⁂ Union Based -> combina vária querys SQL de SELECT (uma query que informa ao banco de dados que você deseja selecionar dados de uma tabela)
     para resultar no vazamento de informações do banco (ex: quero os usuarios, quero as senhas, etc)
                   -> ele ta relacionado a uma falha do servidor de filtragem de querys
+                  -> normalmente é feito dentro de uma entrada de dados e dentro dessa entrada você acha um jeito de transformar a entrada de dados
+                  numa query SQL por manipular ela a parecer (de acordo com a estrutura de abertura e fechamento de uma query, confundindo o servidor,
+                  que não trata direito aquela entrada)
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
