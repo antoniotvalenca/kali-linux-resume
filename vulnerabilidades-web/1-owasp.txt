@@ -12,7 +12,7 @@ SQL INJECTION:
 
 CROSS-SITE SCRIPTING (XXS):
     => quando um atacante consegue injetar, através de campos de inserção (como barras de pesquisa, post de comentário, urls manipuladas para outros users)
-    um script que afeta a experiência de outros usuários e, até mesmo, absorve dados privados deles
+    um script que afeta a experiência de outros usuários e, até mesmo, absorve dados privados deles (como absorção de sessões)
 
 BROKEN AUTHENTICATION AND SESSION MANAGEMENT:
     => quando um atacante encontra uma falha de mecanismo de autenticaçao/gerenciamente de sessao e acaba "sequestrando" sessoes de usuarios legitimos
@@ -21,7 +21,7 @@ SENSITIVE DATA EXPOSURE:
     => quando atacantes acessam dados sensiveis (ex: infos de cartao de creditos, senhas, etc) por causa de mecanismos inseguros por trás desses dados
 
 XML EXTERNAL ENTITIES:
-    =>
+    => uso de arquivos xml em campos de upload para obter dados internos e comprometedores do sistema
 
 INSUFFICIENT SECURITY OF DESERIALIZATION:
     => 
