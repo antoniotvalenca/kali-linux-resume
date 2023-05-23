@@ -20,8 +20,8 @@ BROKEN AUTHENTICATION AND SESSION MANAGEMENT:
 SENSITIVE DATA EXPOSURE:
     => quando atacantes acessam dados sensiveis (ex: infos de cartao de creditos, senhas, etc) por causa de mecanismos inseguros por trás desses dados
 
-XML EXTERNAL ENTITIES:
+XML EXTERNAL ENTITIES (XXE):
     => uso de arquivos xml em campos de upload para obter dados internos e comprometedores do sistema
 
-INSUFFICIENT SECURITY OF DESERIALIZATION:
+INSUFFICIENT SECURITY OF DESERIALIZATION (INSECURE DESERIALIZATION):
     => 

@@ -1,0 +1,10 @@
+SCAN DE VULNERABILIDADES
+
+-> São feitos por scanners que buscam identificar e avaliar vulnerabilidades em softwares, aplicativos web, servidores, etc
+-> É importante tomar cuidado com o uso desses scanners porque, em muitos contextos, eles atrapalham o funcionamento pleno de uma aplicação
+    -> EX: o scanner está configurado à flodar entradas de usuário e e reflete isso num chat que comunica cliente e atendente
+-> SCANNERS USADOS:
+    -> Acunetix
+    -> OWASP ZED ATTACK PROXY (ZAP)
+    -> WPSCAN (para sites wordpress)
+    ->
