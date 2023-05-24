@@ -21,7 +21,7 @@ CRT.SH (site)
 -> encontra subdominios de um domínio principal
 
 DIRB (linha de comando)
--> faz um bruteforce de URLs 
+-> faz um bruteforce de URLs
 
 SQLMAP (linha de comando)
 -> faz sqlinjection para descobrir infos do banco de dados (nome do banco/de tabelas/ de colunas/de dados)
@@ -30,3 +30,13 @@ http://testphp.vulnweb.com/ -> para testar
 EXIFTOOLS (linha de comando)
 -> mexe com metadados de arquivos/imagens etc
 -> usado para inserçao de codigo malicioso dentro de imagens (um arquivo legitimo que camufla o codigo) para webshells
+
+HASH-IDENTIFIER (linha de comando)
+-> usado para identificar qual o tipo mais possível da hash
+-> voce cola a hash e ele te retorna o resultado
+
+BURP SUITE (software)
+-> ferramenta principal de pentesting
+
+OCLHASHCAT (software)
+-> deshashificação de senha

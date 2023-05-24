@@ -11,11 +11,12 @@ SYN => sincronização
 SYN-ACK => sync acknowledgment
 ACK => acknowledgment
 RST => Reset
+
 __________________________________________________________________________________________________________________________________________________________
 TCP Scanning
     -> O mais simples, ele tenta se conectar ao host remoto (servidor) e tenta estabelecer uma conexão na porta específica
     -> Ele espera pelo "3-way handshake" de uma conexão TCP
-        -> você manda um pacote de conexão, o host responde "estou aqui", e voce manda outro pacote estabelecendo a conexão
+        -> você manda um pacote de conexão, o host responde "estou aqui", e voce manda outro pacote confirmando a conexão
     -> É um método "barulhento" e pode deixar logs como IP do atacante
     1. o scanner envia um pacote SYN a uma porta específica do sistema alvo
     2. se estiver aberta a porta, o sistema alvo envia um pacote SYN-ACK, e o scanner recebe esse pacote e envia outro chamado ACK para confirmar a conexão
@@ -25,7 +26,7 @@ TCP Scanning
         -> fazendo o teste:
             -> ABRINDO A PORTA: service ssh start
             -> CHECANDO A ABERTURA: nc -zv 127.0.0.1 22 (porta default de um serviço ssh)
-                -> obs: posso colocar nc -zv 127.0.0.1 1-60000 para checar da 1 ate a 60000 
+                -> obs: posso colocar nc -zv 127.0.0.1 1-60000 para checar da 1 ate a 60000
 SYN Scanning
     -> Muito parecido com TCP Scanning
     1. O Syn Scanning envia o pacote de solicitação (SYN), que é o primeiro passo de abertura de uma conexão, ao sistema alvo

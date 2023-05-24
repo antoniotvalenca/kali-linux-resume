@@ -38,8 +38,7 @@ EM SUMA:
 -> O navegador envia uma solicitação ao servidor DNS, que retorna o endereço de IP público daquele site, em seguida, o navegador usa esse
 endereço de IP para se conectar ao servidor que hospeda o site e solicitar o conteúdo dele
 
-
--> todo site possui uma tabela DNS, que armzena nomes de domínio e seus endereços de IP
+-> todo site possui uma tabela DNS, que armazena nomes de domínio e seus endereços de IP
 -> o servidor DNS verifica sua tabela DNS para localizar o endereço IP do nome de domínio solicitado
 
 EM SUMA:

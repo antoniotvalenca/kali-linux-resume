@@ -2,6 +2,6 @@ POST /route/alvo/index.php?page=blalabla HTTP/1.1                       // espec
 Host: site.especifico.com                                               // diz o host
 User-Agent: Mozilla blablabla                                           // diz de onde ta sendo feita essa requisição
 Accept: text/html, blablabla                                            // ?
-Cookie: blablabla                                                       // os cookies necessarios pra autenticaçao
+Cookie: blablabla                                                       // os cookies necessarios pra autenticaçao e outras coisas
 Content-type: blablabla                                                 // importante pois avisa que estamos enviando dados via um formulario
 crsf-token=blablablaentry=blablabla&...                                 // o payload com as informaçoes de post (nem sempre nessa estrutura)

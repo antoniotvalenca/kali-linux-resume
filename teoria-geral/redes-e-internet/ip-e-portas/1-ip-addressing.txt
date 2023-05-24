@@ -10,7 +10,7 @@ EXPLICAÇÃO ***
 
 1) Dispositivo conecta-se à internet indiretamente
     -> isto é, conecta-se à uma rede que tem acesso à internet assim que conectada
-2) Após isso, seu endereço IP é atribuído ao seu dispositivo pelo ISP (Internet Service Provider)
+2) Após isso, seu endereço IP é atribuído ao seu dispositivo pelo seu ISP (Internet Service Provider)
     -> a sua atividade na internet passa pelo ISP e volta para você pelo IP
     -> como é ele quem concede o acesso à internet, cabe a ele lhe atribuir o IP do seu dispositivo
 3) Caso você desligue e ligue o modem ou roteador, o IP pode ser alterado

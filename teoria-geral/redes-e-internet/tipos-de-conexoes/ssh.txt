@@ -1,0 +1,13 @@
+SSH (SECURE SOCKET SHELL)
+
+-> É um protocolo de conexão criptografado
+-> De modo crú, é uma forma de você acessar de forma segura outro terminal
+
+1. SERVIDOR -> instalar o servidor SSH
+2. SERVIDOR -> após a instalação, o servidor SSH deve estar automaticamente em execução, na porta default 22
+
+1. CLIENTE -> abrir o terminal e digitar o comando
+           => ssh <nome_do_usuario>@<ip_do_servidor>
+2. CLIENTE -> se for a primeira vez que está se conectando a este servidor, voce precisará confirmar a autenticidade digitando "yes" para adicoinar a chave ao seu computador
+3. CLIENTE -> agora, será solicitada a senha do usuário do servidor remoto
+4. CLIENTE -> agora, é possível realizar comandos no servidor remoto, transferir arquivos, etc, tudo isso de modo seguro

@@ -81,7 +81,7 @@ PRÁTICA
 -> QUANDO ENCONTRAR
     -> *url com vulnerabilidade sql* union select *blablabla*
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 SQL INJECTION BÁSICO (COM GET)
 
@@ -89,11 +89,11 @@ SQL INJECTION BÁSICO (COM GET)
     -> union select 1
         ... union select 1, 2, 3 ...
     -> cada requisicao vc adiciona um ,x+1 até que vai ultrapassar o numero total de colunas e vai exibir um erro, com isso, voce vai saber o total de colunas
-    -> descobrir essa info. é importante pois quando voce for fazer o select de informacoes de fora dessa tabela específica, é importante vc continuar passando 
+    -> descobrir essa info. é importante pois quando voce for fazer o select de informacoes de fora dessa tabela específica, é importante vc continuar passando
     essa quantidade total de parametros
         -> ou seja, vamos supor que a tabela daquela pagina tem 3 colunas
             -> id=1 (informacao arbitraria) union select 1, 2 (ambos tb arbitrarios), schema_name from information_schema.schemata
-    -> é importante sabermos a quantidade de colunas da tabela que esta sendo renderizada na pagina porque 
+    -> é importante sabermos a quantidade de colunas da tabela que esta sendo renderizada na pagina porque
 
 -> 2) DESCOBRIR O NOME DO BANCO DE DADOS
     -> ?id=-1 union select 1, 2, ..., schema_name from information_schema.schemata

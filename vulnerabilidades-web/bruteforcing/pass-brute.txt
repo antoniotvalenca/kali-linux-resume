@@ -1,0 +1,41 @@
+PASSWORD BRUTEFORCE
+
+DESCOBRIMENTO DE HASH
+
+-> John (linha de comando)
+    -> o john tem uma wordlist default que compara com a senha em hash que ele deseja descobrir
+    -> caso ele nao consiga decifrar pela wordlist, ele vai passar horas testando letra por letra, numero por numero (o que torna quase impossível o descobrimento já
+    que seria uma potencia computacional enorme)
+
+    => john senhas-em-hash.txt
+        -> jeito mais simples, vai tentar descriptografar todas as senhas que estao nesse arquivo
+
+    => john senhas-em-hash.txt --format=raw-md5
+        -> especificando que o tipo é md5
+
+    => john senhas.txt --format=raw-md5 --wordlist=wordlist.txt
+        -> aqui, estou passando um wordlist modelo para o john se basear
+
+    obs: não entendi muito bem, mas, caso elel consiga deshashificar mas nao sair o output, basta dar um --show ao lado do comando
+
+-> Johnny
+    -> interface gráfica do John (muito melhor que ele, basta anexar o arquivo com a hash e clicar em start attack)
+    -> OPTIONS
+        -> () Single Crack mode: ele faz o ataque de acordo com a wordlist default do programa
+        -> () Wordlist mode: eu mesmo passo a wordlist
+        -> () Incremental mode: é o que checa letra por letra, numero por numero até decifrar
+    -> OUTPUT
+        -> loga o que, normalmente, sairia no terminal
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+-> Hashcat
+    -> faz o mesmo que o john
+    -> existem mais opções de costumização
+    -> oclhashcat
+        -> é este arquivo que deve ser baixado, a versão gráfica do Hashcat
+        -> diferentemente do john (que os calculos sao feitos pela cpu), os calculos nesse sao feitos pela gpu ou seja sao mais potencializados
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+mas o 

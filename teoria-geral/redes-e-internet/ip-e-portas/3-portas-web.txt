@@ -10,7 +10,7 @@ o dispositivo "b" deve ouvir para receber esses dados
 
 -> Quando você digita o endereço de um site no navegador, o navegador envia uma solicitação para o servidor
 web daquele site, especificando a porta que o servidor web estará ouvindo para receber solicitações de clientes
-    -> nesse caso, por padrão, o protocolo http usa a porta 80 para
+    -> nesse caso, por padrão, o protocolo http usa a porta 80 e https 443
 
 -> Número total de portas: 65535
 
