@@ -1,4 +1,4 @@
-SSH (SECURE SOCKET SHELL)
+SSH (SECURE SHELL)
 
 -> É um protocolo de conexão criptografado
 -> De modo crú, é uma forma de você acessar de forma segura outro terminal
@@ -11,3 +11,21 @@ SSH (SECURE SOCKET SHELL)
 2. CLIENTE -> se for a primeira vez que está se conectando a este servidor, voce precisará confirmar a autenticidade digitando "yes" para adicoinar a chave ao seu computador
 3. CLIENTE -> agora, será solicitada a senha do usuário do servidor remoto
 4. CLIENTE -> agora, é possível realizar comandos no servidor remoto, transferir arquivos, etc, tudo isso de modo seguro
+
+___________________________________________________________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________________________________________________________________________
+
+                                                                Instalando SSH:
+
+                                                                # apt-get install openssh-server
+
+                                                                Editando SSH server:
+
+                                                                # nano /etc/ssh/sshd_config
+
+                                                                Reiniciando o SSH Server:
+
+                                                                # service ssh restart
+
+___________________________________________________________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________________________________________________________________________

@@ -38,5 +38,9 @@ HASH-IDENTIFIER (linha de comando)
 BURP SUITE (software)
 -> ferramenta principal de pentesting
 
-OCLHASHCAT (software)
+OCLHASHCAT / HASHCAT (software)
 -> deshashificação de senha
+
+HYDRA (linha de comando)
+-> bruteforce de login (username e senha)
+-> ssh, http, https ...
