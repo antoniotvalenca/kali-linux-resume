@@ -164,3 +164,5 @@ SQLi AVANÇADO
 
 -> É possível, também, fazer SQLinjection manipulando os campos do header da requisição
 -> Esses campos, inclusive, muitos ficam ocultos da própria requisição
+
+sqlmap -u dev.amigo.dev.br/home --dbmas=
