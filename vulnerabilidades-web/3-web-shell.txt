@@ -80,7 +80,7 @@ WEBSHELL AVANÇADO
     -> uma boa ferramenta para mexer com metadados é o "exiftools"
 
 2) USANDO EXIFTOOLS PARA EDITAR METADADOS DE ARQUIVOS LEGÍTIMOS E PASSÁVEIS
--> exiftools lampada.jpg
+-> exiftool lampada.jpg
     -> vai mostrar os meta dados dessa imagem
         -> directory: tal diretorio
            file size: x kB
@@ -102,3 +102,6 @@ isso porque sao caracteres especiais no shell, portanto, é necessário fazer um
     -> site.com/admin/uploads/93024329.jpg?cmd=ls
         -> pronto, agora, em algum lugar de dentro dos caracteres que simbolizam a imagem, vai ter o echo do que você pedir do sistema do servidor
         -> só colocar o mesmo código de webshell de python visto anteriormente
+
+
+        
