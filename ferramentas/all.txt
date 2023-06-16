@@ -14,6 +14,9 @@ CURL/WGET (linha de comando)
 WHOIS (linha de comando) (site)
 -> faz fingerprinting de um domínio/servidor (informações sociais, ip, etc)
 
+FIERCE (linha de comando)
+-> faz pesquisa DNS em um cominio especifico (registro de hosts, subdominios, etc)
+
 WADW00F (linha de comando)
 -> detecta firewalls
 
@@ -47,3 +50,6 @@ HYDRA (linha de comando)
 
 AIRMON-NG (linha de comando)
 -> wifi pass
+
+WIRESHARK (software)
+-> checa o trafego de rede

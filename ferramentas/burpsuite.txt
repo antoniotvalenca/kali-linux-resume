@@ -1,0 +1,60 @@
+BURP SUITE
+
+-> em suma, é uma ferramenta escrita em java que provê ferramentas de pentesting
+-> a sua funcionalidade mais básica, como proxy, seria capturar e manipular todo o trafico de requisições entre voce e um servidor web
+
+____________________________________________________________________________________________________________________________________________
+
+FERRAMENTAS
+
+=> Proxy ***
+    -> o principal aspecto do burp suite, permite que o atacante intercepte e modifique requests/responses
+
+=> Repeater ***
+    -> o segundo principal aspecto do burp, permite que o atacante capture uma requisição e manipule ela quantas vezes quiser (isto é, ficar mudando
+    o payload várias vezes para ver todas as possíveis respostas da mesma requisição). pode vir a ser bastante útil em funcionalidades como para o sqli
+
+=> Intruder ***
+    -> ferramenta que permite que o atacante estabeleça start e endpoints que manipulam payloads e fazem um bruteforce de envio deles.
+    -> o intruder permite que voce manipule varios aspectos de uma requisicao (os que voce marcar para serem manipulados)
+
+=> Decoder ***
+    -> decodifica dados criptografados (ou criptografa dados descriptografados a serem enviados para a vitima)
+    -> base64, url, binario, etc
+    -> não é algo único, mas ainda assim não deixa de ser uma ferramenta legítima
+
+=> Comparer ***
+    -> compara requisições e identifica as semelhanças e diferenças
+    -> não é algo único, mas pode ajudar a acelerar processos
+
+=> Sequencer ***
+    -> 
+
+____________________________________________________________________________________________________________________________________________
+
+DASHBOARD
+
+1) TASKS
+    -> permite que consiguemos definir background tasks enquanto usamos o aplicativo do burp suite (mais limitado ao community version)
+
+2) EVENT LOG
+    -> diz o que estamos fazendo no burp suite (ex: proxy etc)
+
+3) ISSUE ACTIVITY
+    -> exclusivo do burp pro
+    -> lista todas as vulnerabilidades achadas pelo scanner automatico de vulnerabilidades
+
+4) ADVISORY
+    -> mais infos sobre essas vulnerabilidades do topico 3
+
+____________________________________________________________________________________________________________________________________________
+
+SETTINGS
+
+-> User Settings
+    -> são tipo de settings que vão ser aplicadas todas as vezes que você abrir o Burp Suite
+-> Project Settings
+    -> configurações aplicáveis apenas àquela sessão
+
+____________________________________________________________________________________________________________________________________________
+

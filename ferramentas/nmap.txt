@@ -1,0 +1,152 @@
+EXPLICAÇÃO
+
+-> Autoexplicativo: o nmap (network map) é uma ferramenta de mapeamento de rede
+-> Funcionalidades:
+    -> TCP Scanning
+    -> UDP Scanning
+    -> SYN Scanning
+    -> Verificar quais serviços estão rodando na porta
+    -> Identifica qual OP.SYS ta arodando por trás do host (-o)
+    -> Análise de vulnerabilidade
+    -> Exploração de vulnerabilidade
+
+____________________________________________________________________________________________________________________________________________
+
+NMAP
+
+[[[ obs: sempre usar o verbosity level 2 ( nmap -vv ) para ter mais infos. dos scans ]]]
+
+-> NMAP DE SEU PRÓPRIO IP:
+=> nmap 127.0.0.1
+    -> faz o scan de portas
+    -> (parametro: -p 1-3000) analisa as portas 1 à 300
+    -> (parametro: -p 1-3000,3306) analisa as portas 1 à 3000 e a 3306
+
+-> NMAP DE UM SITE:
+=> nmap site.com
+
+-> NMAP DE VÁRIOS IPS:
+=> nmap 192.168.100.0/24
+    -> faz o scan de todos os ips 192.168.100.{0-255}
+=> nmap 192.168.0.0/16
+    -> faz o scan de todos os ips 192.168.{0-255}.{0-255}
+
+-> NMAP DE UM ARQUIVO QUE TEM UMA LISTA DE IPS:
+=> nmap -iL listas_de_ip.txt
+
+-> PARA VER A VERSÃO DOS SERVIÇOS QUE ESTÃO RODANDO
+=> nmap -sV <ip>
+
+-> PARA SABER O SISTEMA OP. DE UMA MAQUINA:
+=> nmap -O <ip>
+
+-> SALVANDO O OUTPUT EM UM ARQUIVO:
+=> nmap <ip> -sS -p 1-5000 -oN output_nmap
+    -> ele faz um SYN Scan entre as portas 1-5000 e o -oN é um comando para guardar todo o output no arquivo output_nmap
+
+-> VERIFICANDO QUAIS DISPOSITIVOS ESTÃO ONLINE E OFFLINE NA REDE
+    -> isto é, ligado/conectado à rede por meio de uma conexão com fio ou sem fio, capaz de se conectar com outros dispositivos
+=> nmap 192.168.6.0/24 -sn
+    -> -sn faz o ping
+    -> o 0/24 -> itera sob todos os ips possiveis entre 1-255
+
+-> MODO AGRESSIVO
+    -> é um scan mais compreensivo que inclui detecção de serviço, de sistema operacional, traceroute, etc
+=> nmap -A <ip>
+
+-> CONTROLE DE TEMPO ENTRE REQUISIÇÕES
+=> nmap -T<0-5> <ip>
+    -> (EX: nmap -T5 ip-do-target) quanto mais alto, mais rápido (portanto mais agressivo e barulhento)
+
+-> FAZER UM PING SWEEP (para ver os hosts ativos na rede)
+=> nmap -sn 192.168.0.0/16 ou /24
+
+____________________________________________________________________________________________________________________________________________
+
+SCANNINGS
+
+obs: alguns scannings requerem usar sudo
+
+-> *** TCP Scanning ***
+    -> nmap <ip> -p <port> // (Porta específica)
+    -> nmap <ip> // (Todas as portas)
+    -> É o scan default, mas podemos também declarar o -sT 
+
+-> *** UDP Scanning ***
+    -> nmap <ip> -l <port> -sU // (Porta específica)
+    -> nmap -sU <ip> // (Porta específica)
+    -> nmap -sU <ip> -p - // vai fazer de todas as portas possíveis (Das 65 mil e poucas)
+
+-> *** SYN Scanning ***
+    -> nmap <ip>
+    -> nc <ip> -p <port> -sS
+    -> se estiver aberta, o status estará como "open"
+
+-> *** ICMP Scanning ***
+    -> nmap <ip> -sn
+
+-> SCANS QUE FAZEM BYPASS DE FIREWALL
+    -> NULL, FIN, Xmas (-sX)
+
+____________________________________________________________________________________________________________________________________________
+
+TESTE DE VULNERABILIDADE
+
+- nmap 127.0.0.1 --script=vuln
+
+____________________________________________________________________________________________________________________________________________
+
+WHAT IF THE PORT IS PROTECTED BY A FIREWALL?
+
+-> em algumas versões do sistemas operacionais, alguns firewalls são configurados para, simplesmente, dropar esses pacotes avulsos
+-> NMAP manda uma requisição TCP-SYN mas recebe nada de volta OU recebe uma flag de RST (reset)
+
+PARAMETROS DE BYPASS
+
+=> -Pn
+    -> Em alguns casos, o Windows bloqueia pacotes ICMP, sendo que, pode default, o nmap já faz a checagem se aquele host existe usando o pacote ICMP, isto é,
+    antes de fazer qualquer varredura mais detalhada.
+    -> Para driblar que o nmap realize essa checagem, basta apenas passar o parametro "-Pn"
+
+=> -f
+    -> manda pacotes mais fragmentados, tornando difícil a detecção por parte de firewalls ou IDSs
+
+=> --scan-delay <time>ms
+    -> usado para dar um delay entre envios de pacote o que pode dar bypass em time based firewalls
+
+____________________________________________________________________________________________________________________________________________
+
+NSE SCRIPTS (Nmap Scripting Engine)
+
+-> É uma feature do NMAP que da a ele a capacidade de fazer muito mais que apenas fazer scan de rede
+-> Os scripts são escritos em Lua
+-> É particularmente útil para reconhecimento de vulnerabilidades, porém tem outras utilidades
+-> Existem algumas categorias:
+    . -> safe: não afeta o target (--script=safe)
+    . -> intrusive: provavelmente afetará o target (--script=intrusive)
+    . -> vuln: scaneia vulnerabilidades (--script=vuln)
+    . -> exploit: tenta explorar essa vulnerabilidade (--script=exploit)
+    . -> auth: para autenticação (--script=auth)
+    . -> brute: fazer brute de credenciais em serviços que estao rodando (--script=safe)
+    . -> discovery:
+    . -> specific script: --script=script-name (ex: --script=http-fileupload-exploiter)
+    . -> multiple scripts: --script=script-1,script-2 (ex: --script=smb-enum-users,smb-enum-shares)
+
+    . -> scripts with arguments: --script http-put --script-args http-put.url='/dav/shell.pp',http-put.file='./shell.php'
+        -> perceba que os argumentos são separados por virgulas e conectados com o script correspondente por pontos
+            -> <script-name>.<argument>
+        -> obs: nmap --script-help <script-name>
+
+____________________________________________________________________________________________________________________________________________
+
+SCRIPTS
+-> Para achá-los
+    -> LINUX /usr/share/nmap/scripts/
+    -> WINDOWS C:\Program Files (x86)\Nmap\scripts
+    -> MAC /usr/local/share/nmap/scripts/
+-> Agora, dentro da pasta scripts, você pode ter mais informações deles acessando o file script.db, que explica a intenção do script por palavras
+chave (se é "safe", "brute", "intrusive" ...)
+    -> grep "ftp" script.db
+        -> mostra todos os scripts com "ftp"
+    -> grep "safe" script.db
+        -> mostra os scripts não agressivos

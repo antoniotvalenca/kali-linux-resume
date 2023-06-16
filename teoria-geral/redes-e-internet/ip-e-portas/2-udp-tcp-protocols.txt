@@ -9,7 +9,7 @@ UDP
 
 -> não é orientado à conexão, isto é, não precisa de uma conexão estabelecida, e não fornece garantia do envio de dados
     -> ou seja, não há confirmação do recebimento ou correção de erros
-    -> de modo crú, ele, uma vez enviado, "não quer saber mais" e não se importa se a outra parte recebeu, ele só sabe que
+    -> de modo crú, ele, uma vez enviado, "não quer saber mais" e não se importa se a outra parte re cebeu, ele só sabe que
     enviou, e "a parte dele, ele já fez", e "quem tiver la para ver, viu, quem não tiver, perdeu"
 -> por isso, UDP é geralmente mais rápido e eficiente, mas pode levar à perda de dados ou pacotes fora de ordem
 

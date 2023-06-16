@@ -1,0 +1,48 @@
+DoS (Denial of Service)
+
+-> são ataques direcionados a afetar a disponibilidade de um serviço
+-> isso pode ocorrer tanto no meio físico (destruição de servidores, cabos, energia, etc) ou acontecer direto na aplicação
+-> no caso dos ataques DDoS (Distributed Denial of Service), são feitos ataques DoS de múltiplas fontes, causando o aumento na capacidade do ataque e dificultanto medidas protetivas
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Tipos
+
+-> Por volume de dados (Bps [bits per sec])
+    => inundar a rede (sobrecarregar a rede de dados, ultrapassando a capacidade dela de lidar com info por segundo)
+    => vai de máquina pra máquina, e a capacidade delas de upload (dificilmente, num computador fraco vai ser possível derrubar outra rede)
+
+    => UDP FLOOD
+        -> Envia milhares de requisições UDP à portas aleatórias de um alvo
+        -> isso faz com que recursos sejam alocados para o servidor verificar se existe algum serviço escutando nele mesmo
+            -> ou seja, várias requisições sendo enviadas por segundo para mais de 65 mil portas, vai acabar sobrecarregando a rede do alvo
+
+    => ICMP FLOOD (PING)
+        -> são enviadas várias requisições ICPM Echo (ping - pong), congestionando a entrada e saída de dados do servidor
+
+-> Por protocolo
+
+    => SYN FLOOD
+        -> Se aproveita de uma brecha do 3-way-handshake do protocolo TCP, enviando o máximo de requisições SYN possíveis
+            -> lembrando que o fluxo é syn (pc 1) -> syn ack (pc 2) -> ack (pc 1)
+            -> no caso, o SYN FLOOD não liga pra resposta do pc 2, ele só envia milhares de pacotes SYN e isso tudo vai reservando um pedacinho do sistema do pc 2
+
+    => PING OF DEATH
+        -> 
+            ->
+
+    => SMURF
+
+-> Por camada de aplicação (layer 7)
+
+    => SLOWLORIS
+        -> se aproveita de uma falha na recepção de pacotes do Apache, enviando HTTP headers malformados fazendo com que conexões consecutivas sejam abertas e ocasionando
+        a alocação de recursos e atingindo o limite máximo de conexões a serem suportadas pela aplicação
+
+    => BUFFER OVERFLOW
+
+-> DDoS
+    => BOTNET
+        -> é um conjunto de computadores carregados com software pronto para efetuar diversos tipos de ataques DoS.
+        -> Tais computadores e servidores geralmente são controlados por um servidor central
+        -> normalmente são de computadores infectados com esse malware

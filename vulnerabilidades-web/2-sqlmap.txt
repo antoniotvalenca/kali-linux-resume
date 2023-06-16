@@ -4,7 +4,7 @@ SQLMAP
 -> É compatível com os bancos de dados:
     -> MySQL, Oracle, PostreSQL, Microsoft SQL Server, SQLite, entre outros
 
-obs: 
+obs:
 ____________________________________________________________________________________________________________________________________________
 
 USO

