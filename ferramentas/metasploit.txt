@@ -1,0 +1,16 @@
+METASPLOIT
+
+-> Ferramenta que suporta todas as fases de um pentesting (do information gathering até o post-exploitation):
+    *** info fathering
+    *** scanning
+    *** exploitation
+    *** exploit development
+    *** post-exploitation
+
+=> msfconsole (LAUNCH)
+    => help
+    => route
+        -> usado quando já temos uma máquina que está no controle do atacante
+        -> 
+    => sessions
+        -> lista todas as sessoes abertas

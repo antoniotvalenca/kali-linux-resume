@@ -53,3 +53,6 @@ AIRMON-NG (linha de comando)
 
 WIRESHARK (software)
 -> checa o trafego de rede
+
+METASPLOIT (linha de comando)
+-> pentesting tool que guarda exploits

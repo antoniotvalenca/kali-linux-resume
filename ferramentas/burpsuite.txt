@@ -9,6 +9,7 @@ FERRAMENTAS
 
 => Proxy ***
     -> o principal aspecto do burp suite, permite que o atacante intercepte e modifique requests/responses
+        -> key: ctrl/cmd + f (para dar forward na requisição, dando espaço para a próxima, e, por tabela, enviando para a aba de Target)
 
 => Repeater ***
     -> o segundo principal aspecto do burp, permite que o atacante capture uma requisição e manipule ela quantas vezes quiser (isto é, ficar mudando
@@ -58,3 +59,12 @@ SETTINGS
 
 ____________________________________________________________________________________________________________________________________________
 
+SCOPING
+
+-> uma das partes importantes de desenvolver uma análise pelo Burp Suite é configurar o seu escopo
+-> O Burp, por default, loga tudo que é requisitado (incluindo tráfego de sites que não são foco do pentesting)
+
+-> Podemos restringir o Burp para APENAS "targetar" a aplicação que quisermos testar
+    -> TARGET > SCOPE SETTINGS > ADD (e adicionamos a URL do site)
+    -> O burp depois irá perguntar se o usuário irá querer que ele pare de logar tudo que não é relacionado ao escopo (normamlente, responde-se com "Sim")
+-> Agora, as URLs que foram configuradas para o pentesting poderão ser vistas na aba de Scope/SiteMap/Target
