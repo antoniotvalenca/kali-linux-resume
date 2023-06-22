@@ -1,5 +1,6 @@
 METASPLOIT
 
+-> Guarda um compilado de exploits que exploram vulnerabilidades, scanning um alvo ou performando brute forces
 -> Ferramenta que suporta todas as fases de um pentesting (do information gathering até o post-exploitation):
     *** info fathering
     *** scanning
@@ -7,10 +8,116 @@ METASPLOIT
     *** exploit development
     *** post-exploitation
 
+-> EXPLOIT: pedaço de código que explora uma vulnerabilidade num target system
+-> VULNERABILITY: falha um brecha de falha que, caso explorado, pode vazar dados confidenciais ou quebrar uma aplicaçao/sistema
+-> PAYLOAD: sao os pedaços de código que são rodados no target system (ou seja, uma parte do exploit)
+
 => msfconsole (LAUNCH)
-    => help
-    => route
-        -> usado quando já temos uma máquina que está no controle do atacante
-        -> 
-    => sessions
-        -> lista todas as sessoes abertas
+    -> MetaSploit Framework CONSOLE
+    -> ao usar esse comando, o ambiente do metasploit é aberto e é carregado o seu banco de dados
+
+_______________________________________________________________________________________________________________________________________________________________________________
+
+COMANDOS DO CONSOLE
+
+=> help
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+=> route
+    -> adiciona, lista, ou remove rotas IP
+    -> é usado para configurar o redirecionamento de tráfego dentro de uma rede comprometida
+    -> permite que voce redirecione o trafego de uma maquina compromeetida para outra maquina na mesma rede
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+=> sessions
+        -> refere-se as conexoes estabelecidas com maquinas comprometidas
+            -> quando vc compromete bem-sucedidamente uma maquina, uma sessao é estabelecida
+            -> esse comando especificamente lista as sessoes
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+=> search
+    -> usado para encontrar o exploit/modulo que quer usar, inclusive o seu número
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+=> use nome-do-modulo-exploit/numero-do-modulo-exploit
+    -> comando para selecionar o modulo e deixar ele na "area de uso" do metasploit
+    -> msf6 exploit(nome-do-exploit) > *linha de comnado* // fica deste jeito
+         -> dentro do use, podemos usar o "show options" para ver as opçoes disponiveis de uso daquele exploit
+         => show options
+            -> NAME (nome da opçao)
+                -> RHOST (Remote Host ou seja o IP) // LHOST (Local Host)
+                -> RPORT (Remote Port)              // LPORT (Local port)
+            -> CURRENT SETTING (parametro)
+            -> REQUIRED (se é obrigatório ou não)
+            -> DESCRIPTION (descrição da opção)
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+=> info
+    -> se tivermos um exploit/modulo na area de stage, este comando mostrará suas informações
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+=> set
+    -> ele configura os parametros dos módulos (seta o valor deles)
+    => set RHOST 10.10.10.40 (vai configurar para aquele modulo ter esse RHOST)
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+=> back
+    -> retorna ao prompt principal do metasploit
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+=> run ou => exploit
+    -> usado para executar o modulo/exploit que está em stage contra o sistema-alvo, enviando o Payload
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+=> history
+    -> historico de comandos usados no terminal do msfconsole
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+=> caracter + TAB
+    -> tab completation, oou seja, se voce digitar "he" e apertar tab, vai aparecer "help"
+
+_______________________________________________________________________________________________________________________________________________________________________________
+
+CLASSIFICAÇÕES DOS MÓDULOS
+
+1) Auxiliary
+    -> scanners, crawlers e fuzzers
+
+2) Encoders
+    -> visam driblar antivirus, ao codificarem o Payload
+    -> quando um payload é gerado, ele pode conter codigo malicioso que pode ser facilmente detectado
+        -> esse modulo tem como objetivo modificar o formato ou estrutura do payload sem alterar sua funcionalidade
+
+3) Evasion
+    -> aplica tecnicas adicionais de evasao e de drible de detecção de antivirus antes de uma penetração
+
+4) Exploits
+    -> os exploits, organizados por target system
+
+5) Payloads
+    -> são os códigos que rodarão no target system.
+    -> enquanto os exploits vão explorar as vulnerabilidades do sistema para que o atacante consiga acesso, o payload é o código que, de fato, vai aplicar a malícia
+
+6) Post
+    -> módulo usado no pos-exploitation
+    -> usado para absorver infos. adicionais de um sistema já comprometido
+
+_______________________________________________________________________________________________________________________________________________________________________________
+
+MODULES RANKING
+
+-> quando procuramos por um exploit/modulo, ele vem com uma coluna de "Rank", que revela o quão confiável é a sua efetividade
+
+EXCELLENT (não quebra o serviço que é atacado. ex: sql injection, cmd execution, rfi, lfi...)
+GREAT (tem a capacidade de identificar a versao do software/serviço do alvo e ajustar automaticamente a exploração para atingir essa vers. específica)
+GOOD (direcionado para casos em que possui alvo-padrão definido e geralmente corresponde ao cenario mais comum de software alvo )
